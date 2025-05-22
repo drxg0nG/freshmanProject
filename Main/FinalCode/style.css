@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Cutive Mono', sans-serif;
 }
 
 body {
@@ -9,7 +12,6 @@ body {
   place-content: center;
   height: 100vh;
   background-color: #131217;
-  /* font-family: "Source Code Pro"; */
 }
 
 h1 {
