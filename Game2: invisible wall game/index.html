@@ -149,6 +149,15 @@
             player.x = newX
             player.y = newY
             drawDot()
+            // Check for winning condition
+            if (player.x === 9 && player.y === 9) {
+              document.body.style.backgroundColor = "green";
+
+              // Optional: flash effect
+              setTimeout(() => {
+                document.body.style.backgroundColor = "black";
+              }, 800);
+            }
         }
     })
     drawDot()
