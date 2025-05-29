@@ -1,0 +1,53 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#maze {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 2px;
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    z-index: 2;
+}
+
+.trail {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    z-index: 1;
+}
+
+.trail.fade1 {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.trail.fade2 {
+    background-color: rgba(255, 0, 0, 0.25);
+}
+
+.trail.fade3 {
+    background-color: rgba(255, 0, 0, 0.1);
+}

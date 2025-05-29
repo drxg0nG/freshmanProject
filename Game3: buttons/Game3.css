@@ -1,0 +1,16 @@
+* {
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/035/569/360/original/abstract-blue-binary-code-background-web-developer-digital-computer-code-information-flow-of-digital-rain-of-numbers-data-analysis-technologies-big-data-computer-technology-concept-video.jpg);
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.random-button {
+  position: absolute;
+  width: 40px;
+}
+
