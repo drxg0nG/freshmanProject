@@ -15,3 +15,16 @@ p {
     text-align: center;
     display: flex;
 }
+
+input[type="text"] {
+    background-color: black;
+    color: rgb(0, 255, 0);
+    border: none;
+    border-bottom: 5px solid rgb(0, 255, 0);
+    font-family: 'Cutive Mono', monospace;
+    font-size: 100px;
+    width: 200px;
+    text-align: center;
+    outline: none;
+    margin-left: 20px;
+}

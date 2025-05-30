@@ -22,8 +22,20 @@ function createCodeStream() {
     const codeStream = document.createElement('div')
     codeStream.className = 'stream'
 
+    // Where its going to fall from
     codeStream.style.transform = `translateX(${Math.random() * 100}vw)`
-    
+
+    // Random font size
+    const fontSize = 14 + Math.random() * 10
+    codeStream.style.fontSize = fontSize + 'px'
+
+    // Build code stream
+    let codeStreamContent = ''
+    const codeStreamLength = 12 + Math.random() * 15
+
+
+
+
 }
 
 
