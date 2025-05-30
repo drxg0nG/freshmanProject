@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    font-family: 'Cutive Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+p {
+    color: rgb(0, 255, 0);
+    font-size: 100px;
+    text-align: center;
+    display: flex;
+}

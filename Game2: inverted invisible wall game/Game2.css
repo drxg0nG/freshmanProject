@@ -1,5 +1,6 @@
 body {
     background-color: black;
+    font-family: 'Cutive Mono', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
