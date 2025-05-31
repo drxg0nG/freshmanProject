@@ -1,35 +1,41 @@
+// Start New Game
 function startNewGame() {
-    localStorage.setItem("escapeLevel", 1);
+    localStorage.setItem("escapeLevel", 1)
 }
 
+// Continue Game
 function continueGame() {
-    const level = localStorage.getItem("escapeLevel");
+    const level = localStorage.getItem("escapeLevel")
     if (level) {
-        alert("Resuming from level " + level + ". (This is just the start page.)");
+        alert(`Resuming from level ${level}`)
     } else {
-        alert("No saved progress found.");
+        alert("No saved progress found.")
     }
-}
 
+}
 
 // Matrix Background
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!";
-const matrix = document.getElementById("matrix")
+const overlay = document.querySelector('.overlay')
+const container = document.querySelector('.container')
+const matrixDiv = document.getElementById('matrix')
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!"
 
+// Create the code stream
 function createCodeStream() {
     const codeStream = document.createElement('div')
     codeStream.className = 'stream'
-
+    
     // Where its going to fall from
     codeStream.style.transform = `translateX(${Math.random() * 100}vw)`
-
+    
     // Duration for the animation
-    codeStream.style.animationDuration = (4 + Math.random() * 4) + 's' // !!!!!!!!!!!!!!!!!!!!!!!!!!
-
+    const duration = (4 + Math.random() * 4)
+    codeStream.style.animationDuration = duration + 's' // !!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     // Random font size
     const fontSize = 14 + Math.random() * 10
     codeStream.style.fontSize = fontSize + 'px'
-
+    
     // Build code stream
     let codeStreamContent = ''
     const codeStreamLength = 12 + Math.floor(Math.random() * 15)
@@ -38,13 +44,22 @@ function createCodeStream() {
         codeStreamContent += char + '<br>'
     }
     codeStream.innerHTML = codeStreamContent
-
-    matrix.appendChild(codeStream)
-
-    setTimeout(() => {
-      container.removeChild(codeStream);
-    }, (parseFloat(codeStream.style.animationDuration) * 1000))
+    matrixDiv.appendChild(codeStream)
+    
+    // Remove code stream once finished
+    setTimeout(() => matrixDiv.removeChild(codeStream), duration * 1000)
 }
 
-// Create new stream
-setInterval(createCodeStream, 25)
+// Overlay
+// Show overlay on load
+window.addEventListener('load', () => {
+  overlay.style.display = 'flex'
+  container.style.display = 'none'
+})
+
+// Close overlay and start game
+document.getElementById('close-overlay').addEventListener('click', () => {
+  overlay.style.display = 'none'
+  container.style.display = 'block'
+  setInterval(createCodeStream, 25)
+})

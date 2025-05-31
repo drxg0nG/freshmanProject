@@ -1,13 +1,13 @@
-let fullScreen = document.documentElement;
+let fullScreen = document.documentElement
 
 /* View in fullscreen */
 function startFullscreen() {
     if (fullScreen.requestFullscreen) {
-        fullScreen.requestFullscreen();
+        fullScreen.requestFullscreen()
     } else if (fullScreen.webkitRequestFullscreen) { /* Safari */
-        fullScreen.webkitRequestFullscreen();
+        fullScreen.webkitRequestFullscreen()
     } else if (fullScreen.msRequestFullscreen) { /* IE11 */
-        fullScreen.msRequestFullscreen();
+        fullScreen.msRequestFullscreen()
     }
 }
 
@@ -15,6 +15,6 @@ function startFullscreen() {
 document.addEventListener('fullscreenchange', function () {
     if (!document.fullscreenElement) {
         // Try to close the window if fullscreen is exited
-        window.close();
+        window.close()
     }
-});
+})
