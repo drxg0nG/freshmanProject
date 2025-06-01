@@ -7,19 +7,19 @@ function startNewGame() {
 function continueGame() {
     const level = localStorage.getItem("escapeLevel")
     if (level) {
-        alert(`Resuming from level ${level}`)
-    } else {
-        alert("No saved progress found.")
-    }
 
+    } else {
+
+    }
 }
 
-// Matrix Background
+// === Matrix Background ===
 const overlay = document.querySelector('.overlay')
 const container = document.querySelector('.container')
 const matrixDiv = document.getElementById('matrix')
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!"
 
+// ======== Falling code stream ========
 // Create the code stream
 function createCodeStream() {
     const codeStream = document.createElement('div')
@@ -50,7 +50,10 @@ function createCodeStream() {
     setTimeout(() => matrixDiv.removeChild(codeStream), duration * 1000)
 }
 
-// Overlay
+// ======== Growing code stream ========
+
+
+// ======== Overlay ========
 // Show overlay on load
 window.addEventListener('load', () => {
   overlay.style.display = 'flex'
