@@ -77,7 +77,7 @@ function answerInput() {
                 // After the third correct answer:
                 if (correctCount >= 3) { //If the user gets 3 answers correct
                     clearInterval(interval) //Stops/clears interval
-                    pText = getLetter() // Show the 1st Secret Code Letter
+                    p.innerHTML = getLetter() // Show the 1st Secret Code Letter
                     return
                 }
 

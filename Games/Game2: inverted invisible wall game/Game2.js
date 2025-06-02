@@ -88,10 +88,12 @@ document.addEventListener("keydown", function (event) {
         // Check for winning condition
         if (player.x === 9 && player.y === 9) {
             document.body.style.backgroundColor = "green";
+            document.getElementById("win-letter").style.display = "block";
 
             // Optional: flash effect
             setTimeout(() => {
                 document.body.style.backgroundColor = "black";
+                document.getElementById("win-letter").style.display = "none"; // Hide the "I" after flash
             }, 800);
         }
     }

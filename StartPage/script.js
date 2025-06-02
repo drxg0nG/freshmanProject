@@ -17,7 +17,7 @@ function continueGame() {
 const overlay = document.querySelector('.overlay')
 const container = document.querySelector('.container')
 const matrixDiv = document.getElementById('matrix')
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!"
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
 
 // ======== Falling code stream ========
 // Create the code stream

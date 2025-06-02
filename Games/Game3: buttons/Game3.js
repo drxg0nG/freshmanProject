@@ -1,11 +1,11 @@
 // Amount of Buttons
-const buttons = 25
+const buttons = 50
 
 // Pick one to be special
 const specialButtonIndex = Math.floor(Math.random() * buttons)
 
 // Create Buttons
-function createButton(index) {
+function createButton(e) {
   const button = document.createElement("img")
   button.className = "random-button"
   button.src = 'button.png'
@@ -14,7 +14,7 @@ function createButton(index) {
 
   // Make each button move randomly when clicked
   button.addEventListener("click", () => {
-    if (index === specialButtonIndex) {
+    if (e === specialButtonIndex) {
       clickSpecialButton()
     } else {
       moveButtonRandomly(button)
