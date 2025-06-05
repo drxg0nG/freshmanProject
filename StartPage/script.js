@@ -36,7 +36,7 @@ function createCodeStream() {
   // Duration for the animation
   const duration = (4 + Math.random() * 4)
   codeStream.style.animationDuration = duration + 's' // !!!!!!!!!!!!!!!!!!!!!!!!!!
-  fallingCode.style.animationDuration = (duration / 0.7) + 's'
+  fallingCode.style.animationDuration = (duration / 0.9) + 's'
   
   // Random font size
   const fontSize = 14 + Math.random() * 10
@@ -52,7 +52,7 @@ function createCodeStream() {
   codeStream.innerHTML = codeStreamContent
 
   // Sorting System
-  if (Math.random() < 0.8) {
+  if (Math.random() < 0.7) {
     fallingCode.appendChild(codeStream)
   } else {
     growingCode.appendChild(codeStream)

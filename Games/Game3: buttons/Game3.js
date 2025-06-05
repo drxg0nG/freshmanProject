@@ -1,14 +1,22 @@
 // Amount of Buttons
-const buttons = 50
+const buttons = 100
 
 // Pick one to be special
 const specialButtonIndex = Math.floor(Math.random() * buttons)
+
+let specialButton
 
 // Create Buttons
 function createButton(e) {
   const button = document.createElement("img")
   button.className = "random-button"
-  button.src = 'button.png'
+
+  if (e === specialButtonIndex) {
+    button.src = 'button.png'
+    specialButton = button
+  } else {
+    button.src = 'button.png'
+  }
   document.body.appendChild(button)
   moveButtonRandomly(button)
 
@@ -22,6 +30,13 @@ function createButton(e) {
   })
 }
 
+//Make special button move every second
+setInterval(() => {
+  if (specialButton) {
+    moveButtonRandomly(specialButton)
+  }
+}, 750)
+
 // Move button randomly
 function moveButtonRandomly(button) {
   const maxX = window.innerWidth - button.offsetWidth
@@ -32,6 +47,8 @@ function moveButtonRandomly(button) {
 
   button.style.left = `${randomX}px`
   button.style.top = `${randomY}px`
+
+
 }
 
 // Create all buttons

@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+#everything {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+h1 {
+    color: white;
+    font-size: 128px;
+}
+
+#loading-container {
+    text-align: center;
+    color: white;
+    width: 30%;
+    border: 1px solid white;
+    border-radius: 12px;
+}
+
+#loading-bar {
+    width: 30%;
+    height: 20px;
+    background-color: rgb(0, 255, 0);
+    border-radius: 12px;
+}
+
+#loading-text {
+    font-size: 40px;
+    color: white;
+}
+
