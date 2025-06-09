@@ -17,25 +17,25 @@ function equation() {
         let char = pText[i]; //Char = letter in equation
         if (char === '0' || char === '?') {
             let randNum;
-            
+
             // Make index 0 and 2 never 0
             if (numbers.length === 0 || numbers.length === 2) {
                 randNum = Math.floor(Math.random() * 9) + 1; // 1-9
             } else {
                 randNum = Math.floor(Math.random() * 10); // 0-9
             }
-            
+
             numbers.push(randNum); //Push the new random number into the empty array
-            
+
             equation += randNum; //Equation = equation + randNum
-        
+
         } else {
             equation += char; //Equation = equation + number in the equation
         }
     }
 
     p.innerHTML = equation + `<input type="text" id="answerInput">` //updating #equation
-    
+
     answerInput()
 }
 
@@ -45,7 +45,7 @@ function updateQuestionMark() {
 
     let equation = (numbers[0] * 10 + numbers[1]) + '+' + (numbers[2] * 10 + numbers[3]) + '+' + numbers[4] + '=' // Setting up Equation
     p.innerHTML = equation + '<input type="text" id="answerInput">' //updating #equation
-    
+
     answerInput()
 }
 
@@ -67,7 +67,7 @@ function answerInput() {
     const input = document.querySelector('#answerInput') //input (answer box) id in html
     input.focus() // Highlights the input box at the start without having to click on the box
 
-    input.addEventListener('keydown', (e) => { 
+    input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') { //If pressed enter in the input box
             e.preventDefault(); // <-- Add this line to prevent page refresh
             const userInput = parseInt(input.value) // The value of the number in the input box
@@ -77,7 +77,33 @@ function answerInput() {
                 // After the third correct answer:
                 if (correctCount >= 3) { //If the user gets 3 answers correct
                     clearInterval(interval) //Stops/clears interval
-                    p.innerHTML = getLetter() // Show the 1st Secret Code Letter
+
+                    //Container for the letter and button
+                    const container = document.createElement('div')
+                    container.style.display = 'flex'
+                    container.style.flexDirection = 'column'
+                    container.style.alignItems = 'center'
+
+                    // Letter
+                    const letter = document.createElement('div')
+                    letter.textContent = getLetter()
+                    letter.style.fontSize = "3rem"
+                    letter.style.marginBottom = "20px"
+                    container.appendChild(letter)
+
+                    // Next Game btn
+                    const nextBtn = document.createElement('button')
+                    nextBtn.className = 'btn'
+                    nextBtn.textContent = "The Invisible"
+                    nextBtn.style.fontSize = "2rem"
+                    nextBtn.onclick = function () {
+                        window.location.href = "../Game2%3A%20inverted%20invisible%20wall%20game/index.html"
+                    }
+                    container.appendChild(nextBtn)
+
+                    // Replace content with container
+                    p.innerHTML = ''
+                    p.appendChild(container)
                     return
                 }
 
