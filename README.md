@@ -1,2 +1,0 @@
-# freshmanProject
-freshman project
