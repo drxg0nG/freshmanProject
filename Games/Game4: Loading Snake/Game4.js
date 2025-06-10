@@ -24,6 +24,7 @@ let controls = false
 function drawSnake() {
     game.innerHTML = ""
     drawObstacles()
+    drawExit()
     for (let i = 0; i < snake.length; i++) {
         var block = document.createElement("div")
         block.className = "snake-part"
@@ -84,7 +85,67 @@ function moveSnake() {
     // === Check for collisions ===
     let hitObstacle = obstacles.some(obstacle => obstacle.x === head.x && obstacle.y === head.y)
     if (hitObstacle) {
-        
+        for (let i = 0; i < snake.length; i++) {
+            snake[i].x -= directionX * 5
+            snake[i].y -= directionY * 5
+
+            if (snake[i].x < 0) {
+                snake[i].x = cols - 1
+            }
+            if (snake[i].x >= cols) {
+                snake[i].x = 0
+            }
+            if (snake[i].y < 0) {
+                snake[i].y = rows - 1
+            }
+            if (snake[i].y >= rows) {
+                snake[i].y = 0
+            }
+            drawSnake()
+            return
+        }
+    }
+
+    // === Check for exit ===
+    if (head.x === exit.x && head.y === exit.y) {
+      clearInterval(intervalId)
+      // Clear Game
+      game.innerHTML = ""
+
+      // create container
+      const container = document.createElement("div")
+      container.style.display = "flex"
+      container.style.flexDirection = "column"
+      container.style.alignItems = "center"
+      container.style.justifyContent = "center"
+      container.style.height = "100vh"
+
+      // Letter
+      const letter = document.createElement("div")
+      letter.textContent = "S"
+      letter.style.fontSize = "5rem"
+      letter.style.color = "black"
+      letter.style.background = "rgb(0,255,0)"
+      letter.style.padding = "2rem 4rem"
+      letter.style.borderRadius = "2rem"
+      letter.style.marginBottom = "30px"
+      letter.style.fontFamily = "'Cutive Mono', monospace"
+      container.appendChild(letter)
+
+      // Next Game button
+      const nextBtn = document.createElement("button")
+      nextBtn.className = "btn"
+      nextBtn.textContent = "The Final Code"
+      nextBtn.style.fontSize = "2rem"
+      nextBtn.onclick = function() {
+          window.location.href = ""
+      }
+      container.appendChild(nextBtn)
+
+      document.body.style.backgroundColor = "rgb(0,255,0)"
+      document.body.innerHTML = ""
+      document.body.appendChild(container)
+      return
     }
 
     snake.unshift(head)
@@ -138,14 +199,14 @@ function drawObstacles() {
         obstacle.style.position = "absolute"
         obstacle.style.width = snakeBoxSize + "px"
         obstacle.style.height = snakeBoxSize + "px"
-        obstacle.style.background = "#333"
+        obstacle.style.background = "rgb(255, 0, 0)"
         obstacle.style.borderRadius = "4px"
         game.appendChild(obstacle)
     }
 }
 
 let obstacles = []
-let obstacleCount = 10
+let obstacleCount = 100
 
 function generateObstacles() {
     obstacles = []
@@ -153,13 +214,70 @@ function generateObstacles() {
         let ox = Math.floor(Math.random() * cols)
         let oy = Math.floor(Math.random() * rows)
         // Avoid placing obstacles on the initial snake
-        let overlap = snake.some(part => part.x === ox && part.y === oy)
-        let duplicate = obstacles.some(ob => ob.x === ox && ob.y === oy)
+        let overlap = false
+        for (let i = 0; i < snake.length; i++) {
+            if (snake[i].x === ox && snake[i].y === oy) {
+                overlap = true
+                break
+            }
+        }
+        let duplicate = false
+        for (let i = 0; i < obstacles.length; i++) {
+            if (obstacles[i].x === ox && obstacles[i].y === oy) {
+                duplicate = true
+                break
+            }
+        }
         if (!overlap && !duplicate) {
             obstacles.push({ x: ox, y: oy })
         }
     }
 }
 
+let exit = { x: 0, y: 0 }
+function generateExit() {
+  while(true) {
+    let exitX = Math.floor(Math.random() * cols)
+    let exitY = Math.floor(Math.random() * rows)
+    
+    let overlapSnake = false
+    for (let i = 0; i < snake.length; i++) {
+      if (snake[i].x === exitX && snake[i].y === exitY) {
+        overlapSnake = true
+        break
+      }
+    }
+
+    let overlapObstacle = false
+    for (let i = 0; i < obstacles.length; i++) {
+      if (obstacles[i].x === exitX && obstacles[i].y === exitY) {
+        overlapObstacle = true
+        break
+      }
+    }
+
+    if (!overlapSnake && !overlapObstacle) {
+      exit.x = exitX
+      exit.y = exitY
+      break
+    }
+  }
+}
+
+function drawExit() {
+  let exitBlock = document.createElement("div")
+  exitBlock.className = "exit"
+  exitBlock.style.left = exit.x * snakeBoxSize + "px"
+  exitBlock.style.top = exit.y * snakeBoxSize + "px"
+  exitBlock.style.position = "absolute"
+  exitBlock.style.width = snakeBoxSize + "px"
+  exitBlock.style.height = snakeBoxSize + "px"
+  exitBlock.style.background = "rgb(0, 0, 255)"
+  exitBlock.style.borderRadius = "4px"
+  exitBlock.style.boxShadow = "0 0 10px rgba(0, 0, 255, 0.5)"
+  game.appendChild(exitBlock)
+}
+
 generateObstacles()
+generateExit()
 drawSnake()

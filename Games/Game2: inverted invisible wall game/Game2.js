@@ -71,6 +71,7 @@ function canMove2(x2, y2) {
 
 // Listen to arrow keys for movement
 document.addEventListener("keydown", function (event2) {
+    event2.preventDefault() // Prevent default arrow key scrolling
     let newX2 = player2.x
     let newY2 = player2.y
 
