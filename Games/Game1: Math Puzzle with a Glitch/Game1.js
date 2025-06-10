@@ -1,3 +1,5 @@
+let game1 = document.querySelector('#game1')
+let game2 = document.querySelector('#game2')
 let p1 = document.querySelector('#equation')
 let pText1 = p1.textContent //equation
 let numbers1 = [] //empty array
@@ -69,7 +71,7 @@ function answerInput1() {
 
     input1.addEventListener('keydown', (e1) => {
         if (e1.key === 'Enter') { //If pressed enter in the input box
-            e1.preventDefault() // <-- Add this line to prevent page refresh
+            e1.preventDefault()
             const userInput1 = parseInt(input1.value) // The value of the number in the input box
             if (userInput1 === getCorrectAnswer1()) { //If the users answer is equal to the actual answer
                 correctCount1++ //correctCount is declared to be 0 at the top of the js file, getting updated to 1 next, and then so on.
@@ -83,12 +85,16 @@ function answerInput1() {
                     container1.style.display = 'flex'
                     container1.style.flexDirection = 'column'
                     container1.style.alignItems = 'center'
+                    container1.style.justifyContent = 'center'
+                    container1.style.height = '100vh'
 
                     // Letter
                     const letter1 = document.createElement('div')
                     letter1.textContent = getLetter1()
                     letter1.style.fontSize = "5rem"
                     letter1.style.marginBottom = "20px"
+                    letter1.style.color = "rgb(0, 255, 0)"
+                    letter1.style.fontFamily = "Cutive Mono, monospace"
                     container1.appendChild(letter1)
 
                     // Next Game btn
@@ -97,13 +103,15 @@ function answerInput1() {
                     nextBtn1.textContent = "The Invisible"
                     nextBtn1.style.fontSize = "2rem"
                     nextBtn1.onclick = function () {
-                        window.location.href = "../Game2%3A%20inverted%20invisible%20wall%20game/index.html"
+                        game1.style.display = 'none'
+                        game2.style.display = 'block'
+                        initGame2()
                     }
                     container1.appendChild(nextBtn1)
 
                     // Replace content with container
-                    p1.innerHTML = ''
-                    p1.appendChild(container1)
+                    game1.innerHTML = ''
+                    game1.appendChild(container1)
                     return
                 }
 

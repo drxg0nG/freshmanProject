@@ -1,3 +1,6 @@
+let game3 = document.querySelector("#game3")
+let game4 = document.querySelector("#game4")
+
 // Amount of Buttons
 const buttons3 = 100
 
@@ -7,7 +10,7 @@ const specialButtonIndex3 = Math.floor(Math.random() * buttons3)
 let specialButton3
 
 // Level speeds
-const levelSpeeds3 = [1100, 899, 750]
+const levelSpeeds3 = [1100, 999, 850]
 let currentLevel3 = 0
 let specialButtonTime3
 
@@ -42,7 +45,7 @@ function createButton3(e3) {
   } else {
     button3.src = 'button.png'
   }
-  document.body.appendChild(button3)
+  game3.appendChild(button3)
   moveButtonRandomly3(button3)
 
   // Make each button move when clicked
@@ -80,8 +83,8 @@ function clickSpecialButton3() {
   specialButtonClickCount3++
 
   if (specialButtonClickCount3 === 3) {
-    document.body.innerHTML = ""
-    document.body.style.backgroundColor = "black"
+    game3.innerHTML = ""
+    game3.style.backgroundColor = "black"
 
     // Create a centered container
     const container3 = document.createElement("div")
@@ -91,9 +94,9 @@ function clickSpecialButton3() {
     container3.style.justifyContent = "center"
     container3.style.height = "100vh"
 
-    // Letter "I"
+    // Letter
     const letter3 = document.createElement("div")
-    letter3.textContent = "I"
+    letter3.textContent = "G"
     letter3.style.fontSize = "5rem"
     letter3.style.marginBottom = "20px"
     letter3.style.color = "rgb(0, 255, 0)"
@@ -106,18 +109,19 @@ function clickSpecialButton3() {
     nextBtn3.textContent = "Loading"
     nextBtn3.style.fontSize = "2rem"
     nextBtn3.onclick = function () {
-      window.location.href = "../Game4%3A%20Loading%20Snake/index.html"
+      game3.style.display = 'none'
+      game4.style.display = 'block'
     }
     container3.appendChild(nextBtn3)
 
-    document.body.appendChild(container3)
+    game3.appendChild(container3)
     return
   }
 
   // Normal flash / level up
-  document.body.classList.add('flash-green')
+  game3.classList.add('flash-green')
   setTimeout(() => {
-    document.body.classList.remove('flash-green')
+    game3.classList.remove('flash-green')
     if (currentLevel3 < levelSpeeds3.length - 1) {
       currentLevel3++
       startSpecialButtonTime3()

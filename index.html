@@ -4,12 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape The Browser</title>
+    <link rel="stylesheet" href="StartPage/style.css">
     <link rel="stylesheet" href="Games/Game1: Math Puzzle with a Glitch/Game1.css">
     <link rel="stylesheet" href="Games/Game2: inverted invisible wall game/Game2.css">
     <link rel="stylesheet" href="Games/Game3: buttons/Game3.css">
     <link rel="stylesheet" href="Games/Game4: Loading Snake/Game4.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
+        body {
+            background-color: black;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 <body>
+
+    <div id="startPage" style="display: flex;">
+        <div id="matrix">
+            <div id="fallingCode"></div>
+            <div id="growingCode"></div>
+        </div>
+
+        <div class="overlay">
+            <div id="innerOverlay">
+                <h2>Are you ready to get sent into this prison?</h2>
+                <button id="close-overlay" onclick="startFullscreen()">Fullscreen</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>🕵️ Escape the Browser</h1>
+            <p>A browser-native escape room game. Solve puzzles to break free from the web.</p>
+            <div>
+                <button onclick="startNewGame()">Start New Game</button>
+                <button onclick="continueGame()">Continue</button>
+            </div>
+        </div>
+    </div>
 
     <div id="game1" style="display: none;">
         <p id="equation">00+00+?=<input type="text" id="answerInput"></p>
@@ -27,10 +63,12 @@
         <div id="game"></div>
     </div>
 
+    <script src="StartPage/script.js"></script>
     <script src="Games/Game1: Math Puzzle with a Glitch/Game1.js"></script>
     <script src="Games/Game2: inverted invisible wall game/Game2.js"></script>
     <script src="Games/Game3: buttons/Game3.js"></script>
     <script src="Games/Game4: Loading Snake/Game4.js"></script>
+    <script src="FullScreen/fullscreen.js"></script>
     
 </body>
 </html>
