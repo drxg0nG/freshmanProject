@@ -1,284 +1,290 @@
-const game = document.getElementById("game")
+const game4 = document.getElementById("game")
 // ======== Snake ========
-let snakeBoxSize = 20
-const cols = Math.floor(window.innerWidth / snakeBoxSize)
-const rows = Math.floor(window.innerHeight / snakeBoxSize)
+let snakeBoxSize4 = 20
+const cols4 = Math.floor(window.innerWidth / snakeBoxSize4)
+const rows4 = Math.floor(window.innerHeight / snakeBoxSize4)
 
 // Loading snake
-let length = 20
-const centerRow = Math.floor(rows / 2)
-const startCol = Math.floor((cols - length) / 2)
-let loading = 0
+let length4 = 20
+const centerRow4 = Math.floor(rows4 / 2)
+const startCol4 = Math.floor((cols4 - length4) / 2)
+let loading4 = 0
 
-let snake = []
-for (let i = 0; i < length; i++) {
-    snake.push({ x: startCol + i, y: centerRow })
+let snake4 = []
+for (let i4 = 0; i4 < length4; i4++) {
+    snake4.push({ x: startCol4 + i4, y: centerRow4 })
 }
 
-let snakeHistory = []
+let snakeHistory4 = []
 
-let directionX = 0
-let directionY = 0
-let moving = false
-let intervalId = 0
-let controls = false
+let directionX4 = 0
+let directionY4 = 0
+let moving4 = false
+let intervalId4 = 0
+let controls4 = false
 
-function drawSnake() {
-    game.innerHTML = ""
-    drawObstacles()
-    drawExit()
-    for (let i = 0; i < snake.length; i++) {
-        var block = document.createElement("div")
-        block.className = "snake-part"
-        block.style.left = snake[i].x * snakeBoxSize + "px"
-        block.style.top = snake[i].y * snakeBoxSize + "px"
-        block.style.position = "absolute"
-        block.style.width = snakeBoxSize + "px"
-        block.style.height = snakeBoxSize + "px"
-        if (controls) {
-          block.style.background = "rgb(0, 255, 0)"
+function drawSnake4() {
+    game4.innerHTML = ""
+    drawObstacles4()
+    drawExit4()
+    for (let i4 = 0; i4 < snake4.length; i4++) {
+        var block4 = document.createElement("div")
+        block4.className = "snake-part"
+        block4.style.left = snake4[i4].x * snakeBoxSize4 + "px"
+        block4.style.top = snake4[i4].y * snakeBoxSize4 + "px"
+        block4.style.position = "absolute"
+        block4.style.width = snakeBoxSize4 + "px"
+        block4.style.height = snakeBoxSize4 + "px"
+        if (controls4) {
+          block4.style.background = "rgb(0, 255, 0)"
         } else {
-            if (i < loading) {
-                block.style.background = "rgb(0, 255, 0)"
+            if (i4 < loading4) {
+                block4.style.background = "rgb(0, 255, 0)"
             } else {
-                block.style.background = "#ccc"
+                block4.style.background = "#ccc"
             }
         }
-        game.appendChild(block)
+        game4.appendChild(block4)
     }
 }
 
-let loadingInterval = setInterval(() => {
-    if (!controls) {
-        loading++
-        if (loading > length) {
-          loading = 0
+let loadingInterval4 = setInterval(() => {
+    if (!controls4) {
+        loading4++
+        if (loading4 > length4) {
+          loading4 = 0
         }
-        drawSnake()
+        drawSnake4()
     }
 }, 100)
 
-function copyPart(part) {
-    return { x: part.x, y: part.y }
+function copyPart4(part4) {
+    return { x: part4.x, y: part4.y }
 }
 
-function moveSnake() {
+function moveSnake4() {
     // Snake history
-    snakeHistory.push(snake.map(copyPart))
+    snakeHistory4.push(snake4.map(copyPart4))
 
-    let head = {
-        x: snake[0].x + directionX,
-        y: snake[0].y + directionY
+    let head4 = {
+        x: snake4[0].x + directionX4,
+        y: snake4[0].y + directionY4
     }
 
     // left to right
-    if (head.x < 0) {
-      head.x = cols - 1
+    if (head4.x < 0) {
+      head4.x = cols4 - 1
     }
 
     // right to left
-    if (head.x >= cols) {
-      head.x = 0
+    if (head4.x >= cols4) {
+      head4.x = 0
     }
 
     // top to bottom
-    if (head.y < 0) {
-      head.y = rows - 1
+    if (head4.y < 0) {
+      head4.y = rows4 - 1
     }
 
     // bottom to top
-    if (head.y >= rows) {
-      head.y = 0
+    if (head4.y >= rows4) {
+      head4.y = 0
     }
 
     // === Check for collisions ===
-    let hitObstacle = obstacles.some(obstacle => obstacle.x === head.x && obstacle.y === head.y)
-    if (hitObstacle) {
-        if (snakeHistory.length >= 5) {
-          snake = snakeHistory[snakeHistory.length - 5].map(copyPart)
-          snakeHistory = snakeHistory.slice(0, snakeHistory.length - 5)
+    let hitObstacle4 = false
+    for (let i4 = 0; i4 < obstacles4.length; i4++) {
+        if (obstacles4[i4].x === head4.x && obstacles4[i4].y === head4.y) {
+            hitObstacle4 = true
+            break
+        }
+    }
+    if (hitObstacle4) {
+        if (snakeHistory4.length >= 5) {
+          snake4 = snakeHistory4[snakeHistory4.length - 5].map(copyPart4)
+          snakeHistory4 = snakeHistory4.slice(0, snakeHistory4.length - 5)
         }
 
-        if (snakeHistory.length > 10) {
-          snakeHistory.shift()
+        if (snakeHistory4.length > 10) {
+          snakeHistory4.shift()
         }
 
-        drawSnake()
+        drawSnake4()
         return
     }
 
     // === Check for exit ===
-    if (head.x === exit.x && head.y === exit.y) {
-      clearInterval(intervalId)
+    if (head4.x === exit4.x && head4.y === exit4.y) {
+      clearInterval(intervalId4)
       // Clear Game
-      game.innerHTML = ""
+      game4.innerHTML = ""
 
       // create container
-      const container = document.createElement("div")
-      container.style.display = "flex"
-      container.style.flexDirection = "column"
-      container.style.alignItems = "center"
-      container.style.justifyContent = "center"
-      container.style.height = "100vh"
+      const container4 = document.createElement("div")
+      container4.style.display = "flex"
+      container4.style.flexDirection = "column"
+      container4.style.alignItems = "center"
+      container4.style.justifyContent = "center"
+      container4.style.height = "100vh"
 
       // Letter
-      const letter = document.createElement("div")
-      letter.textContent = "S"
-      letter.style.fontSize = "5rem"
-      letter.style.color = "black"
-      letter.style.background = "rgb(0,255,0)"
-      letter.style.padding = "2rem 4rem"
-      letter.style.borderRadius = "2rem"
-      letter.style.marginBottom = "30px"
-      letter.style.fontFamily = "'Cutive Mono', monospace"
-      container.appendChild(letter)
+      const letter4 = document.createElement("div")
+      letter4.textContent = "S"
+      letter4.style.fontSize = "5rem"
+      letter4.style.color = "black"
+      letter4.style.background = "rgb(0,255,0)"
+      letter4.style.padding = "2rem 4rem"
+      letter4.style.borderRadius = "2rem"
+      letter4.style.marginBottom = "30px"
+      letter4.style.fontFamily = "'Cutive Mono', monospace"
+      container4.appendChild(letter4)
 
       // Next Game button
-      const nextBtn = document.createElement("button")
-      nextBtn.className = "btn"
-      nextBtn.textContent = "The Final Code"
-      nextBtn.style.fontSize = "2rem"
-      nextBtn.onclick = function() {
+      const nextBtn4 = document.createElement("button")
+      nextBtn4.className = "btn"
+      nextBtn4.textContent = "The Final Code"
+      nextBtn4.style.fontSize = "2rem"
+      nextBtn4.onclick = function() {
           window.location.href = "../Game4%3A%20Loading%20Snake/index.html"
       }
-      container.appendChild(nextBtn)
+      container4.appendChild(nextBtn4)
 
       document.body.style.backgroundColor = "rgb(0,255,0)"
       document.body.innerHTML = ""
-      document.body.appendChild(container)
+      document.body.appendChild(container4)
       return
     }
 
-    snake.unshift(head)
+    snake4.unshift(head4)
 
-    if (snake.length > length) {
-        snake.pop()
+    if (snake4.length > length4) {
+        snake4.pop()
     }
 
-    drawSnake()
+    drawSnake4()
 }
 
-window.addEventListener("keydown", function(event) {
-    if (!controls && (
-        event.key === "ArrowUp" ||
-        event.key === "ArrowDown" ||
-        event.key === "ArrowLeft" ||
-        event.key === "ArrowRight"
+window.addEventListener("keydown", function(event4) {
+    if (!controls4 && (
+        event4.key === "ArrowUp" ||
+        event4.key === "ArrowDown" ||
+        event4.key === "ArrowLeft" ||
+        event4.key === "ArrowRight"
     )) {
-        controls = true
-        clearInterval(loadingInterval)
-        drawSnake()
+        controls4 = true
+        clearInterval(loadingInterval4)
+        drawSnake4()
     }
 
-    if (event.key === "ArrowUp" && directionY !== 1) {
-      directionX = 0
-      directionY = -1
-    } else if (event.key === "ArrowDown" && directionY !== -1) {
-      directionX = 0
-      directionY = 1
-    } else if (event.key === "ArrowLeft" && directionX !== 1) {
-      directionX = -1
-      directionY = 0
-    } else if (event.key === "ArrowRight" && directionX !== -1) {
-      directionX = 1
-      directionY = 0
+    if (event4.key === "ArrowUp" && directionY4 !== 1) {
+      directionX4 = 0
+      directionY4 = -1
+    } else if (event4.key === "ArrowDown" && directionY4 !== -1) {
+      directionX4 = 0
+      directionY4 = 1
+    } else if (event4.key === "ArrowLeft" && directionX4 !== 1) {
+      directionX4 = -1
+      directionY4 = 0
+    } else if (event4.key === "ArrowRight" && directionX4 !== -1) {
+      directionX4 = 1
+      directionY4 = 0
     }
 
-    if (!moving && (directionX !== 0 || directionY !== 0)) {
-      moving = true
-      intervalId = setInterval(moveSnake, 100)
+    if (!moving4 && (directionX4 !== 0 || directionY4 !== 0)) {
+      moving4 = true
+      intervalId4 = setInterval(moveSnake4, 100)
     }
 })
 
 // ======== Obstacles ========
-function drawObstacles() {
-    for (let i = 0; i < obstacles.length; i++) {
-        let obstacle = document.createElement("div")
-        obstacle.className = "obstacle"
-        obstacle.style.left = obstacles[i].x * snakeBoxSize + "px"
-        obstacle.style.top = obstacles[i].y * snakeBoxSize + "px"
-        obstacle.style.position = "absolute"
-        obstacle.style.width = snakeBoxSize + "px"
-        obstacle.style.height = snakeBoxSize + "px"
-        obstacle.style.background = "rgb(255, 0, 0)"
-        obstacle.style.borderRadius = "4px"
-        game.appendChild(obstacle)
+function drawObstacles4() {
+    for (let i4 = 0; i4 < obstacles4.length; i4++) {
+        let obstacle4 = document.createElement("div")
+        obstacle4.className = "obstacle"
+        obstacle4.style.left = obstacles4[i4].x * snakeBoxSize4 + "px"
+        obstacle4.style.top = obstacles4[i4].y * snakeBoxSize4 + "px"
+        obstacle4.style.position = "absolute"
+        obstacle4.style.width = snakeBoxSize4 + "px"
+        obstacle4.style.height = snakeBoxSize4 + "px"
+        obstacle4.style.background = "rgb(255, 0, 0)"
+        obstacle4.style.borderRadius = "4px"
+        game4.appendChild(obstacle4)
     }
 }
 
-let obstacles = []
-let obstacleCount = 100
+let obstacles4 = []
+let obstacleCount4 = 100
 
-function generateObstacles() {
-    obstacles = []
-    while (obstacles.length < obstacleCount) {
-        let ox = Math.floor(Math.random() * cols)
-        let oy = Math.floor(Math.random() * rows)
+function generateObstacles4() {
+    obstacles4 = []
+    while (obstacles4.length < obstacleCount4) {
+        let ox4 = Math.floor(Math.random() * cols4)
+        let oy4 = Math.floor(Math.random() * rows4)
         // Avoid placing obstacles on the initial snake
-        let overlap = false
-        for (let i = 0; i < snake.length; i++) {
-            if (snake[i].x === ox && snake[i].y === oy) {
-                overlap = true
+        let overlap4 = false
+        for (let i4 = 0; i4 < snake4.length; i4++) {
+            if (snake4[i4].x === ox4 && snake4[i4].y === oy4) {
+                overlap4 = true
                 break
             }
         }
-        let duplicate = false
-        for (let i = 0; i < obstacles.length; i++) {
-            if (obstacles[i].x === ox && obstacles[i].y === oy) {
-                duplicate = true
+        let duplicate4 = false
+        for (let i4 = 0; i4 < obstacles4.length; i4++) {
+            if (obstacles4[i4].x === ox4 && obstacles4[i4].y === oy4) {
+                duplicate4 = true
                 break
             }
         }
-        if (!overlap && !duplicate) {
-            obstacles.push({ x: ox, y: oy })
+        if (!overlap4 && !duplicate4) {
+            obstacles4.push({ x: ox4, y: oy4 })
         }
     }
 }
 
-let exit = { x: 0, y: 0 }
-function generateExit() {
+let exit4 = { x: 0, y: 0 }
+function generateExit4() {
   while(true) {
-    let exitX = Math.floor(Math.random() * cols)
-    let exitY = Math.floor(Math.random() * rows)
+    let exitX4 = Math.floor(Math.random() * cols4)
+    let exitY4 = Math.floor(Math.random() * rows4)
     
-    let overlapSnake = false
-    for (let i = 0; i < snake.length; i++) {
-      if (snake[i].x === exitX && snake[i].y === exitY) {
-        overlapSnake = true
+    let overlapSnake4 = false
+    for (let i4 = 0; i4 < snake4.length; i4++) {
+      if (snake4[i4].x === exitX4 && snake4[i4].y === exitY4) {
+        overlapSnake4 = true
         break
       }
     }
 
-    let overlapObstacle = false
-    for (let i = 0; i < obstacles.length; i++) {
-      if (obstacles[i].x === exitX && obstacles[i].y === exitY) {
-        overlapObstacle = true
+    let overlapObstacle4 = false
+    for (let i4 = 0; i4 < obstacles4.length; i4++) {
+      if (obstacles4[i4].x === exitX4 && obstacles4[i4].y === exitY4) {
+        overlapObstacle4 = true
         break
       }
     }
 
-    if (!overlapSnake && !overlapObstacle) {
-      exit.x = exitX
-      exit.y = exitY
+    if (!overlapSnake4 && !overlapObstacle4) {
+      exit4.x = exitX4
+      exit4.y = exitY4
       break
     }
   }
 }
 
-function drawExit() {
-  let exitBlock = document.createElement("div")
-  exitBlock.className = "exit"
-  exitBlock.style.left = exit.x * snakeBoxSize + "px"
-  exitBlock.style.top = exit.y * snakeBoxSize + "px"
-  exitBlock.style.position = "absolute"
-  exitBlock.style.width = snakeBoxSize + "px"
-  exitBlock.style.height = snakeBoxSize + "px"
-  exitBlock.style.background = "rgb(0, 0, 255)"
-  exitBlock.style.borderRadius = "4px"
-  exitBlock.style.boxShadow = "0 0 10px rgba(0, 0, 255, 0.5)"
-  game.appendChild(exitBlock)
+function drawExit4() {
+  let exitBlock4 = document.createElement("div")
+  exitBlock4.className = "exit"
+  exitBlock4.style.left = exit4.x * snakeBoxSize4 + "px"
+  exitBlock4.style.top = exit4.y * snakeBoxSize4 + "px"
+  exitBlock4.style.position = "absolute"
+  exitBlock4.style.width = snakeBoxSize4 + "px"
+  exitBlock4.style.height = snakeBoxSize4 + "px"
+  exitBlock4.style.background = "rgb(0, 0, 255)"
+  exitBlock4.style.borderRadius = "4px"
+  exitBlock4.style.boxShadow = "0 0 10px rgba(0, 0, 255, 0.5)"
+  game4.appendChild(exitBlock4)
 }
 
-generateObstacles()
-generateExit()
-drawSnake()
+generateObstacles4()
+generateExit4()
+drawSnake4()
