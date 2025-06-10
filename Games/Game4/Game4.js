@@ -1,4 +1,4 @@
-const game4 = document.getElementById("game")
+const game4 = document.querySelector('#game4')
 // ======== Snake ========
 let snakeBoxSize4 = 20
 const cols4 = Math.floor(window.innerWidth / snakeBoxSize4)
@@ -145,13 +145,13 @@ function moveSnake4() {
       nextBtn4.textContent = "The Final Code"
       nextBtn4.style.fontSize = "2rem"
       nextBtn4.onclick = function() {
-          window.location.href = "../Game4%3A%20Loading%20Snake/index.html"
+          game4.style.display = 'none'
       }
       container4.appendChild(nextBtn4)
 
-      document.body.style.backgroundColor = "rgb(0,255,0)"
-      document.body.innerHTML = ""
-      document.body.appendChild(container4)
+      game4.style.backgroundColor = "rgb(0,255,0)"
+      game4.innerHTML = ""
+      game4.appendChild(container4)
       return
     }
 

@@ -1,4 +1,4 @@
-body {
+#game2 {
     background-color: black;
     font-family: 'Cutive Mono', monospace;
     display: flex;
@@ -53,7 +53,7 @@ body {
     background-color: rgba(255, 0, 0, 0.1);
 }
 
-.btn {
+#game2 .btn {
     background-color: transparent;
     border: 2px solid black;
     color: black;
@@ -65,7 +65,7 @@ body {
     border-radius: 1rem;
 }
 
-.btn:hover {
+#game2 .btn:hover {
     background-color: black;
     color: rgb(0,255,0);
     box-shadow: 0 0 10px black;

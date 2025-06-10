@@ -11,13 +11,19 @@
 <body>
 
     <div class="container">
-        <h1>🕵️ Escape the Browser</h1>
-        <p>A browser-native escape room game. Solve puzzles to break free from the web.</p>
+        <h1><input type="text" id="finalInput"></h1>
+        <p>Make a word by unscrabling the letters to escape.</p>
         <div>
-            <a href="../Games/Game1: Math Puzzle with a Glitch/index.html"><button onclick="startNewGame()">Start New
-                    Game</button></a>
-            <button onclick="continueGame()">Continue</button>
+            <button id="check">Check?</button>
         </div>
+    </div>
+    <div class="congrats">
+        <div class="congrats-title">Congratulations!</div>
+        <div class="congrats-message">You escaped the browser.</div>
+
+        <a href="../Games/Game1: Math Puzzle with a Glitch/index.html"><button onclick="startNewGame()">Start NewGame</button></a>
+        
+        <div class="congrats-credit">Made by Kaavish and Angadveer</div>
     </div>
 
     <script src="script.js"></script>

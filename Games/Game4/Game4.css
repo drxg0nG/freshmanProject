@@ -1,4 +1,4 @@
-body {
+#game4 {
   margin: 0;
   overflow: hidden;
   background-color: black;
@@ -23,7 +23,7 @@ body {
   border-radius: 4px;
 }
 
-.btn {
+#game4 .btn {
   background-color: transparent;
   border: 2px solid black;
   color: black;
@@ -35,7 +35,7 @@ body {
   border-radius: 1rem;
 }
 
-.btn:hover {
+#game4 .btn:hover {
   background-color: black;
   color: rgb(0, 255, 0);
   box-shadow: 0 0 10px black;

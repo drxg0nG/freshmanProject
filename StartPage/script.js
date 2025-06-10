@@ -1,12 +1,16 @@
+let startPage = document.querySelector('#startPage')
+
 // Start New Game
 function startNewGame() {
-    localStorage.setItem("escapeLevel", 1)
+  localStorage.setItem("escapeLevelS", 1)
+  startPage.style.display = 'none'
+  game1.style.display = 'flex'
 }
 
 // Continue Game
-function continueGame() {
-    const level = localStorage.getItem("escapeLevel")
-    if (level) {
+function continueGameS() {
+    const levelS = localStorage.getItem("escapeLevelS")
+    if (levelS) {
 
     } else {
 
@@ -14,64 +18,64 @@ function continueGame() {
 }
 
 // ======== Matrix Background ========
-const overlay = document.querySelector('.overlay')
-const container = document.querySelector('.container')
-const matrixDiv = document.getElementById('matrix')
-const fallingCode = document.getElementById('fallingCode')
-const growingCode = document.getElementById('growingCode') 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
+const overlayS = document.querySelector('.overlay')
+const containerS = document.querySelector('.container')
+const matrixDivS = document.getElementById('matrix')
+const fallingCodeS = document.getElementById('fallingCode')
+const growingCodeS = document.getElementById('growingCode') 
+const lettersS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
 
 // Append to matrix
-matrixDiv.appendChild(fallingCode)
-matrixDiv.appendChild(growingCode)
+matrixDivS.appendChild(fallingCodeS)
+matrixDivS.appendChild(growingCodeS)
 
 // Create the code stream
-function createCodeStream() {
-  const codeStream = document.createElement('div')
-  codeStream.className = 'stream'
+function createCodeStreamS() {
+  const codeStreamS = document.createElement('div')
+  codeStreamS.className = 'stream'
   
   // Where its going to fall from
-  codeStream.style.left = `${Math.random() * 100}vw`
+  codeStreamS.style.left = `${Math.random() * 100}vw`
   
   // Duration for the animation
-  const duration = (4 + Math.random() * 4)
-  codeStream.style.animationDuration = duration + 's' // !!!!!!!!!!!!!!!!!!!!!!!!!!
-  fallingCode.style.animationDuration = (duration / 0.9) + 's'
+  const durationS = (4 + Math.random() * 4)
+  codeStreamS.style.animationDuration = durationS + 's'
+  fallingCodeS.style.animationDuration = (durationS / 0.9) + 's'
   
   // Random font size
-  const fontSize = 14 + Math.random() * 10
-  codeStream.style.fontSize = fontSize + 'px'
+  const fontSizeS = 14 + Math.random() * 10
+  codeStreamS.style.fontSize = fontSizeS + 'px'
   
   // Build code stream
-  let codeStreamContent = ''
-  const codeStreamLength = 12 + Math.floor(Math.random() * 15)
-  for (let i = 0; i < codeStreamLength; i++) {
-      const char = letters.charAt(Math.floor(Math.random() * letters.length))
-      codeStreamContent += char + '<br>'
+  let codeStreamContentS = ''
+  const codeStreamLengthS = 12 + Math.floor(Math.random() * 15)
+  for (let iS = 0; iS < codeStreamLengthS; iS++) {
+      const charS = lettersS.charAt(Math.floor(Math.random() * lettersS.length))
+      codeStreamContentS += charS + '<br>'
   }
-  codeStream.innerHTML = codeStreamContent
+  codeStreamS.innerHTML = codeStreamContentS
 
   // Sorting System
   if (Math.random() < 0.7) {
-    fallingCode.appendChild(codeStream)
+    fallingCodeS.appendChild(codeStreamS)
   } else {
-    growingCode.appendChild(codeStream)
+    growingCodeS.appendChild(codeStreamS)
   }
   
   // Remove code stream once finished
-  setTimeout(() => codeStream.parentElement.removeChild(codeStream), duration * 1000)
+  setTimeout(() => codeStreamS.parentElement.removeChild(codeStreamS), durationS * 1000)
 }
 
 // ======== Overlay ========
 // Show overlay on load
 window.addEventListener('load', () => {
-  overlay.style.display = 'flex'
-  container.style.display = 'none'
+  overlayS.style.display = 'flex'
+  containerS.style.display = 'none'
 })
 
 // Close overlay and start game
 document.getElementById('close-overlay').addEventListener('click', () => {
-  overlay.style.display = 'none'
-  container.style.display = 'block'
-  setInterval(createCodeStream, 50)
+  overlayS.style.display = 'none'
+  containerS.style.display = 'block'
+  setInterval(createCodeStreamS, 50)
 })
