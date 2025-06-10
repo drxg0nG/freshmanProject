@@ -19,10 +19,33 @@ body {
 }
 
 .flash-green {
-    animation: flash-green-bg 0.3s;
+  animation: flash-green-bg 0.3s;
 }
 
 @keyframes flash-green-bg {
-    0% { background-color: rgb(0, 255, 0); }
-    100% { background-color: black; }
+  0% {
+    background-color: rgb(0, 255, 0);
+  }
+
+  100% {
+    background-color: black;
+  }
+}
+
+.btn {
+  background-color: transparent;
+  border: 2px solid rgb(0, 255, 0);
+  color: rgb(0, 255, 0);
+  padding: 1rem 2rem;
+  margin: 1rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+}
+
+.btn:hover {
+  background-color: rgb(0, 255, 0);
+  color: black;
+  box-shadow: 0 0 10px rgb(0, 255, 0);
 }

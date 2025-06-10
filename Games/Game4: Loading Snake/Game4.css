@@ -17,3 +17,8 @@ body {
     background: lime;
     border-radius: 4px;
 }
+
+.obstacle {
+  background: rgb(255, 0, 0);
+  border-radius: 4px;
+}

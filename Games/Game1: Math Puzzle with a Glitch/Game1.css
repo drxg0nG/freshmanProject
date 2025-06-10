@@ -38,6 +38,7 @@ input[type="text"] {
     font-size: 1.25rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 1rem;
 }
 
 .btn:hover {

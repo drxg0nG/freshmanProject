@@ -1,133 +1,133 @@
-let p = document.querySelector('#equation')
-let pText = p.textContent //equation
-let numbers = [] //empty array
-let interval
-let correctCount = 0
+let p1 = document.querySelector('#equation')
+let pText1 = p1.textContent //equation
+let numbers1 = [] //empty array
+let interval1
+let correctCount1 = 0
 
 // Timing for 3 levels
-let intervalLevels = [5000, 3000, 1500] //time for each level
-let currentLevel = 0
+let intervalLevels1 = [5000, 3000, 1500] //time for each level
+let currentLevel1 = 0
 
 //1: Making Random Equation
-function equation() {
-    numbers = [] //empty array
-    let equation = '' //empty string
+function equation1() {
+    numbers1 = [] //empty array
+    let equation1 = '' //empty string
 
-    for (let i = 0; i < pText.length; i++) { // going through Every letter 
-        let char = pText[i]; //Char = letter in equation
-        if (char === '0' || char === '?') {
-            let randNum;
+    for (let i1 = 0; i1 < pText1.length; i1++) { // going through Every letter 
+        let char1 = pText1[i1] //Char = letter in equation
+        if (char1 === '0' || char1 === '?') {
+            let randNum1
 
             // Make index 0 and 2 never 0
-            if (numbers.length === 0 || numbers.length === 2) {
-                randNum = Math.floor(Math.random() * 9) + 1; // 1-9
+            if (numbers1.length === 0 || numbers1.length === 2) {
+                randNum1 = Math.floor(Math.random() * 9) + 1 // 1-9
             } else {
-                randNum = Math.floor(Math.random() * 10); // 0-9
+                randNum1 = Math.floor(Math.random() * 10) // 0-9
             }
 
-            numbers.push(randNum); //Push the new random number into the empty array
+            numbers1.push(randNum1) //Push the new random number into the empty array
 
-            equation += randNum; //Equation = equation + randNum
+            equation1 += randNum1 //Equation = equation + randNum
 
         } else {
-            equation += char; //Equation = equation + number in the equation
+            equation1 += char1 //Equation = equation + number in the equation
         }
     }
 
-    p.innerHTML = equation + `<input type="text" id="answerInput">` //updating #equation
+    p1.innerHTML = equation1 + `<input type="text" id="answerInput">` //updating #equation
 
-    answerInput()
+    answerInput1()
 }
 
 //2: Update ?
-function updateQuestionMark() {
-    numbers[4] = Math.floor(Math.random() * 10)
+function updateQuestionMark1() {
+    numbers1[4] = Math.floor(Math.random() * 10)
 
-    let equation = (numbers[0] * 10 + numbers[1]) + '+' + (numbers[2] * 10 + numbers[3]) + '+' + numbers[4] + '=' // Setting up Equation
-    p.innerHTML = equation + '<input type="text" id="answerInput">' //updating #equation
+    let equation1 = (numbers1[0] * 10 + numbers1[1]) + '+' + (numbers1[2] * 10 + numbers1[3]) + '+' + numbers1[4] + '=' // Setting up Equation
+    p1.innerHTML = equation1 + '<input type="text" id="answerInput">' //updating #equation
 
-    answerInput()
+    answerInput1()
 }
 
 //3: Get correct answer
-function getCorrectAnswer() {
+function getCorrectAnswer1() {
     return (
-        (numbers[0] * 10 + numbers[1]) + (numbers[2] * 10 + numbers[3]) + numbers[4] // returns the equation adding all the values
+        (numbers1[0] * 10 + numbers1[1]) + (numbers1[2] * 10 + numbers1[3]) + numbers1[4] // returns the equation adding all the values
     )
 }
 
 //4: Secret Code 1
-function getLetter() {
-    const letter = 'I'
-    return letter
+function getLetter1() {
+    const letter1 = 'I'
+    return letter1
 }
 
 //5: Set up input each time
-function answerInput() {
-    const input = document.querySelector('#answerInput') //input (answer box) id in html
-    input.focus() // Highlights the input box at the start without having to click on the box
+function answerInput1() {
+    const input1 = document.querySelector('#answerInput') //input (answer box) id in html
+    input1.focus() // Highlights the input box at the start without having to click on the box
 
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') { //If pressed enter in the input box
-            e.preventDefault(); // <-- Add this line to prevent page refresh
-            const userInput = parseInt(input.value) // The value of the number in the input box
-            if (userInput === getCorrectAnswer()) { //If the users answer is equal to the actual answer
-                correctCount++ //correctCount is declared to be 0 at the top of the js file, getting updated to 1 next, and then so on.
+    input1.addEventListener('keydown', (e1) => {
+        if (e1.key === 'Enter') { //If pressed enter in the input box
+            e1.preventDefault() // <-- Add this line to prevent page refresh
+            const userInput1 = parseInt(input1.value) // The value of the number in the input box
+            if (userInput1 === getCorrectAnswer1()) { //If the users answer is equal to the actual answer
+                correctCount1++ //correctCount is declared to be 0 at the top of the js file, getting updated to 1 next, and then so on.
 
                 // After the third correct answer:
-                if (correctCount >= 3) { //If the user gets 3 answers correct
-                    clearInterval(interval) //Stops/clears interval
+                if (correctCount1 >= 3) { //If the user gets 3 answers correct
+                    clearInterval(interval1) //Stops/clears interval
 
                     //Container for the letter and button
-                    const container = document.createElement('div')
-                    container.style.display = 'flex'
-                    container.style.flexDirection = 'column'
-                    container.style.alignItems = 'center'
+                    const container1 = document.createElement('div')
+                    container1.style.display = 'flex'
+                    container1.style.flexDirection = 'column'
+                    container1.style.alignItems = 'center'
 
                     // Letter
-                    const letter = document.createElement('div')
-                    letter.textContent = getLetter()
-                    letter.style.fontSize = "3rem"
-                    letter.style.marginBottom = "20px"
-                    container.appendChild(letter)
+                    const letter1 = document.createElement('div')
+                    letter1.textContent = getLetter1()
+                    letter1.style.fontSize = "5rem"
+                    letter1.style.marginBottom = "20px"
+                    container1.appendChild(letter1)
 
                     // Next Game btn
-                    const nextBtn = document.createElement('button')
-                    nextBtn.className = 'btn'
-                    nextBtn.textContent = "The Invisible"
-                    nextBtn.style.fontSize = "2rem"
-                    nextBtn.onclick = function () {
+                    const nextBtn1 = document.createElement('button')
+                    nextBtn1.className = 'btn'
+                    nextBtn1.textContent = "The Invisible"
+                    nextBtn1.style.fontSize = "2rem"
+                    nextBtn1.onclick = function () {
                         window.location.href = "../Game2%3A%20inverted%20invisible%20wall%20game/index.html"
                     }
-                    container.appendChild(nextBtn)
+                    container1.appendChild(nextBtn1)
 
                     // Replace content with container
-                    p.innerHTML = ''
-                    p.appendChild(container)
+                    p1.innerHTML = ''
+                    p1.appendChild(container1)
                     return
                 }
 
                 // If it has been less then 3 attempts, go to next level speed
-                if (currentLevel < intervalLevels.length - 1) {
-                    currentLevel++ //correctCount is declared to be 0 at the top of the js file, getting updated to 1 next, and then so on.
+                if (currentLevel1 < intervalLevels1.length - 1) {
+                    currentLevel1++ //correctCount is declared to be 0 at the top of the js file, getting updated to 1 next, and then so on.
                 }
 
-                clearInterval(interval) //Stops/clears interval
-                equation() //Starts game
-                interval = setInterval(updateQuestionMark, intervalLevels[currentLevel]) //Sets an interval (changes the question mark number) every amount of seconds based on what level the user is on. The current level decides how long the question mark stays before it changes (5s, 3s, 1.5s).
+                clearInterval(interval1) //Stops/clears interval
+                equation1() //Starts game
+                interval1 = setInterval(updateQuestionMark1, intervalLevels1[currentLevel1]) //Sets an interval (changes the question mark number) every amount of seconds based on what level the user is on. The current level decides how long the question mark stays before it changes (5s, 3s, 1.5s).
             }
         }
     })
 
-    input.addEventListener('input', () => {
-        if (parseInt(input.value) === getCorrectAnswer()) { //If the answer is equal to the user value, there is a bottom border that turns green or red (right or wrong).
-            input.style.border = '2px solid green'
+    input1.addEventListener('input', () => {
+        if (parseInt(input1.value) === getCorrectAnswer1()) { //If the answer is equal to the user value, there is a bottom border that turns green or red (right or wrong).
+            input1.style.border = '2px solid green'
         } else {
-            input.style.border = '2px solid red'
+            input1.style.border = '2px solid red'
         }
     })
 }
 
 //6: Start game
-equation()
-interval = setInterval(updateQuestionMark, intervalLevels[currentLevel]) //Sets an interval (changes the question mark number) every amount of seconds based on what level the user is on. The current level decides how long the question mark stays before it changes (5s, 3s, 1.5s).
+equation1()
+interval1 = setInterval(updateQuestionMark1, intervalLevels1[currentLevel1]) //Sets an interval (changes the question mark number) every amount of seconds based on what level the user is on. The current level decides how long the question mark stays before it changes (5s, 3s, 1.5s).
