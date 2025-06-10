@@ -1,24 +1,42 @@
 body {
-      margin: 0;
-      overflow: hidden;
-      background-color: black;
-    }
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+}
 
 #game {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 .snake-part {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: lime;
-    border-radius: 4px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: lime;
+  border-radius: 4px;
 }
 
 .obstacle {
   background: rgb(255, 0, 0);
   border-radius: 4px;
+}
+
+.btn {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+}
+
+.btn:hover {
+  background-color: black;
+  color: rgb(0, 255, 0);
+  box-shadow: 0 0 10px black;
 }

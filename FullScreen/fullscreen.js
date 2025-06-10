@@ -11,6 +11,17 @@ function startFullscreen() {
     }
 }
 
+/* Exit fullscreen on click */
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen()
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen()
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen()
+    }
+}
+
 /* Listen for fullscreen change */
 document.addEventListener('fullscreenchange', function () {
     if (!document.fullscreenElement) {

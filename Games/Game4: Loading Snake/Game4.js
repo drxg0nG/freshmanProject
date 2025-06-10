@@ -15,6 +15,8 @@ for (let i = 0; i < length; i++) {
     snake.push({ x: startCol + i, y: centerRow })
 }
 
+let snakeHistory = []
+
 let directionX = 0
 let directionY = 0
 let moving = false
@@ -56,7 +58,14 @@ let loadingInterval = setInterval(() => {
     }
 }, 100)
 
+function copyPart(part) {
+    return { x: part.x, y: part.y }
+}
+
 function moveSnake() {
+    // Snake history
+    snakeHistory.push(snake.map(copyPart))
+
     let head = {
         x: snake[0].x + directionX,
         y: snake[0].y + directionY
@@ -85,25 +94,17 @@ function moveSnake() {
     // === Check for collisions ===
     let hitObstacle = obstacles.some(obstacle => obstacle.x === head.x && obstacle.y === head.y)
     if (hitObstacle) {
-        for (let i = 0; i < snake.length; i++) {
-            snake[i].x -= directionX * 5
-            snake[i].y -= directionY * 5
-
-            if (snake[i].x < 0) {
-                snake[i].x = cols - 1
-            }
-            if (snake[i].x >= cols) {
-                snake[i].x = 0
-            }
-            if (snake[i].y < 0) {
-                snake[i].y = rows - 1
-            }
-            if (snake[i].y >= rows) {
-                snake[i].y = 0
-            }
-            drawSnake()
-            return
+        if (snakeHistory.length >= 5) {
+          snake = snakeHistory[snakeHistory.length - 5].map(copyPart)
+          snakeHistory = snakeHistory.slice(0, snakeHistory.length - 5)
         }
+
+        if (snakeHistory.length > 10) {
+          snakeHistory.shift()
+        }
+
+        drawSnake()
+        return
     }
 
     // === Check for exit ===
@@ -138,7 +139,7 @@ function moveSnake() {
       nextBtn.textContent = "The Final Code"
       nextBtn.style.fontSize = "2rem"
       nextBtn.onclick = function() {
-          window.location.href = ""
+          window.location.href = "../Game4%3A%20Loading%20Snake/index.html"
       }
       container.appendChild(nextBtn)
 
