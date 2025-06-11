@@ -5,7 +5,6 @@
   overflow: hidden;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .random-button {

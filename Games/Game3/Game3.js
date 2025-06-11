@@ -83,6 +83,7 @@ function clickSpecialButton3() {
     container3.style.alignItems = "center"
     container3.style.justifyContent = "center"
     container3.style.height = "100vh"
+    container3.style.width = "100vw"
 
     // Letter
     const letter3 = document.createElement("div")

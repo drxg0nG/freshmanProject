@@ -1,27 +1,67 @@
-const game4 = document.querySelector('#game4')
+const game4 = document.querySelector('#game4 #game')
 // ======== Snake ========
 let snakeBoxSize4 = 20
-const cols4 = Math.floor(window.innerWidth / snakeBoxSize4)
-const rows4 = Math.floor(window.innerHeight / snakeBoxSize4)
+let cols4
+let rows4
 
-// Loading snake
-let length4 = 20
-const centerRow4 = Math.floor(rows4 / 2)
-const startCol4 = Math.floor((cols4 - length4) / 2)
-let loading4 = 0
+function updateGridSize4() {
+  cols4 = Math.floor(window.innerWidth / snakeBoxSize4)
+  rows4 = Math.floor(window.innerHeight / snakeBoxSize4)
+}
+window.addEventListener("resize", function() {
+    if (document.getElementById('game4').style.display !== 'none') {
+        initGame4()
+    }
+})
 
 let snake4 = []
-for (let i4 = 0; i4 < length4; i4++) {
-    snake4.push({ x: startCol4 + i4, y: centerRow4 })
-}
-
+let loading4 = 0
+let length4 = 20
 let snakeHistory4 = []
-
 let directionX4 = 0
 let directionY4 = 0
 let moving4 = false
 let intervalId4 = 0
 let controls4 = false
+
+function initGame4() {
+  updateGridSize4()
+  
+  // Loading snake
+  length4 = 20
+  const centerRow4 = Math.floor(rows4 / 2)
+  const startCol4 = Math.floor((cols4 - length4) / 2)
+  loading4 = 0
+  
+  snake4 = []
+  for (let i4 = 0; i4 < length4; i4++) {
+      snake4.push({ x: startCol4 + i4, y: centerRow4 })
+  }
+  
+  snakeHistory4 = []
+  directionX4 = 0
+  directionY4 = 0
+  moving4 = false
+  intervalId4 = 0
+  controls4 = false
+
+  generateObstacles4()
+  generateExit4()
+  drawSnake4()
+
+  if (loadingInterval4) {
+    clearInterval(loadingInterval4)
+  }
+  loadingInterval4 = setInterval(() => {
+    if (!controls4) {
+      loading4++
+      if (loading4 > length4) {
+        loading4 = 0
+      }
+      drawSnake4()
+    }
+  }, 100)
+}
 
 function drawSnake4() {
     game4.innerHTML = ""
@@ -129,7 +169,7 @@ function moveSnake4() {
 
       // Letter
       const letter4 = document.createElement("div")
-      letter4.textContent = "S"
+      letter4.textContent = "M"
       letter4.style.fontSize = "5rem"
       letter4.style.color = "black"
       letter4.style.background = "rgb(0,255,0)"
@@ -192,7 +232,7 @@ window.addEventListener("keydown", function(event4) {
 
     if (!moving4 && (directionX4 !== 0 || directionY4 !== 0)) {
       moving4 = true
-      intervalId4 = setInterval(moveSnake4, 100)
+      intervalId4 = setInterval(moveSnake4, 200)
     }
 })
 
@@ -213,7 +253,7 @@ function drawObstacles4() {
 }
 
 let obstacles4 = []
-let obstacleCount4 = 100
+let obstacleCount4 = 250
 
 function generateObstacles4() {
     obstacles4 = []
@@ -285,6 +325,6 @@ function drawExit4() {
   game4.appendChild(exitBlock4)
 }
 
-generateObstacles4()
-generateExit4()
-drawSnake4()
+// generateObstacles4()
+// generateExit4()
+// drawSnake4()
