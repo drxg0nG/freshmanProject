@@ -1,5 +1,4 @@
 let game2 = document.querySelector("#game2")
-let game3 = document.querySelector("#game3")
 const maze2 = document.querySelector("#maze")
 
 // 0 = open; 1 = wall
@@ -28,16 +27,6 @@ function buildGrid2() {
     }
     maze2.innerHTML = cellsHTML2
 }
-buildGrid2()
-
-function initGame2() {
-    player2 = { x: 0, y: 0 }
-    
-    // Create the grid
-    let cellsHTML2 = ''
-    game2.querySelectorAll('.dot, .trail').forEach(e => e.remove())
-    drawDot2()
-}
 
 // Draw the red dot
 function drawDot2() {
@@ -46,18 +35,22 @@ function drawDot2() {
 
     // Make dot at where you are
     const cell2 = maze2.querySelector(`.cell[data-x="${player2.x}"][data-y="${player2.y}"]`)
-    const dot2 = document.createElement("div")
-    dot2.className = "dot"
-    cell2.appendChild(dot2)
+    if (cell2) {
+        const dot2 = document.createElement("div")
+        dot2.className = "dot"
+        cell2.appendChild(dot2)
+    }
 }
 
 // Leave a trail at (x, y)
 function leaveTrail2(x2, y2) {
     const cell2 = maze2.querySelector(`.cell[data-x="${x2}"][data-y="${y2}"]`)
-    const trail2 = document.createElement("div")
-    trail2.className = "trail fade1"
-    trail2.setAttribute("data-stage", "1")
-    cell2.appendChild(trail2)
+    if (cell2) {
+        const trail2 = document.createElement("div")
+        trail2.className = "trail fade1"
+        trail2.setAttribute("data-stage", "1")
+        cell2.appendChild(trail2)
+    }
 }
 
 // Update all trail stages (fade1 → fade2 → fade3 → remove)
@@ -83,7 +76,7 @@ function canMove2(x2, y2) {
 }
 
 // Listen to arrow keys for movement
-maze2.addEventListener("keydown", function (event2) {
+function mazeKeydown2(event2) {
     event2.preventDefault() // Prevent default arrow key scrolling
     let newX2 = player2.x
     let newY2 = player2.y
@@ -99,6 +92,7 @@ maze2.addEventListener("keydown", function (event2) {
         player2.x = newX2
         player2.y = newY2
         drawDot2()
+
         // Check for winning condition
         if (player2.x === 9 && player2.y === 9) {
             // Clear the maze
@@ -130,8 +124,7 @@ maze2.addEventListener("keydown", function (event2) {
             nextBtn2.textContent = "Buttons"
             nextBtn2.style.fontSize = "2rem"
             nextBtn2.onclick = function () {
-                game2.style.display = 'none'
-                game3.style.display = 'block'
+                showGame(3)
             }
             container2.appendChild(nextBtn2)
 
@@ -142,4 +135,17 @@ maze2.addEventListener("keydown", function (event2) {
             return
         }
     }
-})
+}
+
+// Initialize game2
+function initGame2() {
+    player2 = { x: 0, y: 0 }
+    game2.style.backgroundColor = ""
+    buildGrid2()
+    drawDot2()
+
+    maze2.setAttribute("tabindex", "0")
+    maze2.removeEventListener("keydown", mazeKeydown2)
+    maze2.addEventListener("keydown", mazeKeydown2)
+    maze2.focus()
+}

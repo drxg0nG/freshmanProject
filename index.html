@@ -19,6 +19,10 @@
             padding: 0;
             margin: 0;
             min-height: 100vh;
+            display: block;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -69,6 +73,30 @@
     <script src="Games/Game3/Game3.js"></script>
     <script src="Games/Game4/Game4.js"></script>
     <script src="FullScreen/fullscreen.js"></script>
+
+    <script>
+        function showGame(gameNumber) {
+            document.getElementById('game1').style.display = 'none';
+            document.getElementById('game2').style.display = 'none';
+            document.getElementById('game3').style.display = 'none';
+            document.getElementById('game4').style.display = 'none';
+    
+            if (gameNumber === 1) {
+                document.getElementById('game1').style.display = 'flex';
+                if (typeof initGame1 === 'function') initGame1()
+            } else if (gameNumber === 2) {
+                document.getElementById('game2').style.display = 'flex';
+                if (typeof initGame2 === 'function') initGame2()
+            } else if (gameNumber === 3) {
+                document.getElementById('game3').style.display = 'flex';
+                if (typeof initGame3 === 'function') initGame3()
+            } else if (gameNumber === 4) {
+                document.getElementById('game4').style.display = 'flex';
+                if (typeof initGame4 === 'function') initGame4()
+            }
+        }
+        window.showGame = showGame
+    </script>
     
 </body>
 </html>

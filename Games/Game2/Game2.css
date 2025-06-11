@@ -70,3 +70,9 @@
     color: rgb(0,255,0);
     box-shadow: 0 0 10px black;
 }
+
+#maze:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}

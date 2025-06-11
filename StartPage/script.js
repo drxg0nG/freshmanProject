@@ -2,9 +2,8 @@ let startPage = document.querySelector('#startPage')
 
 // Start New Game
 function startNewGame() {
-  localStorage.setItem("escapeLevelS", 1)
   startPage.style.display = 'none'
-  game1.style.display = 'flex'
+  showGame(1)
 }
 
 // Continue Game

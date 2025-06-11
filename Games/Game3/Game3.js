@@ -1,12 +1,10 @@
-let game3 = document.querySelector("#game3")
-let game4 = document.querySelector("#game4")
+let game3
 
 // Amount of Buttons
 const buttons3 = 100
 
 // Special Button
-const specialButtonIndex3 = Math.floor(Math.random() * buttons3)
-
+let specialButtonIndex3
 let specialButton3
 
 // Level speeds
@@ -40,10 +38,10 @@ function createButton3(e3) {
 
   if (e3 === specialButtonIndex3) {
     button3.className = "random-button special-button"
-    button3.src = 'green-button.png'
+    button3.src = 'Games/Game3/green-button.png'
     specialButton3 = button3
   } else {
-    button3.src = 'button.png'
+    button3.src = 'Games/Game3/button.png'
   }
   game3.appendChild(button3)
   moveButtonRandomly3(button3)
@@ -69,14 +67,6 @@ function moveButtonRandomly3(button3) {
   button3.style.left = `${randomX3}px`
   button3.style.top = `${randomY3}px`
 }
-
-// Create all buttons
-for (let i3 = 0; i3 < buttons3; i3++) {
-  createButton3(i3)
-}
-
-// Start first interval after buttons are created
-startSpecialButtonTime3()
 
 // Special button function
 function clickSpecialButton3() {
@@ -109,8 +99,7 @@ function clickSpecialButton3() {
     nextBtn3.textContent = "Loading"
     nextBtn3.style.fontSize = "2rem"
     nextBtn3.onclick = function () {
-      game3.style.display = 'none'
-      game4.style.display = 'block'
+      showGame(4)
     }
     container3.appendChild(nextBtn3)
 
@@ -129,4 +118,26 @@ function clickSpecialButton3() {
       clearInterval(specialButtonTime3)
     }
   }, 300)
+}
+
+// Create all buttons
+function initGame3() {
+  game3 = document.querySelector("#game3")
+  game3.innerHTML = ""
+  specialButtonClickCount3 = 0
+  currentLevel3 = 0
+
+  // Clear any old interval
+  if (specialButtonTime3) {
+    clearInterval(specialButtonTime3)
+  }
+
+  // Pick a new special button each time
+  specialButtonIndex3 = Math.floor(Math.random() * buttons3)
+  specialButton3 = null
+
+  for (let i3 = 0; i3 < buttons3; i3++) {
+    createButton3(i3)
+  }
+  startSpecialButtonTime3()
 }

@@ -1,15 +1,17 @@
 #game3 {
-  background-color: black;
   font-family: 'Cutive Mono', monospace;
   margin: 0;
   height: 100vh;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .random-button {
   position: absolute;
   width: 40px;
+  z-index: 10;
 }
 
 .special-button {
