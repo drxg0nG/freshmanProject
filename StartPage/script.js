@@ -2,18 +2,27 @@ let startPage = document.querySelector('#startPage')
 
 // Start New Game
 function startNewGame() {
+  localStorage.setItem("escapeLevel", 1)
   startPage.style.display = 'none'
   showGame(1)
 }
 
 // Continue Game
 function continueGameS() {
-    const levelS = localStorage.getItem("escapeLevelS")
-    if (levelS) {
-
-    } else {
-
+  const levelS = localStorage.getItem("escapeLevel")
+  if (levelS) {
+    if (levelS === '1') {
+      showGame(1)
+    } else if (levelS === '2') {
+      showGame(2)
+    } else if (levelS === '3') {
+      showGame(3)
+    } else if (levelS === '4') {
+      showGame(4)
     }
+  } else {
+
+  }
 }
 
 // ======== Matrix Background ========
@@ -49,8 +58,8 @@ function createCodeStreamS() {
   let codeStreamContentS = ''
   const codeStreamLengthS = 12 + Math.floor(Math.random() * 15)
   for (let iS = 0; iS < codeStreamLengthS; iS++) {
-      const charS = lettersS.charAt(Math.floor(Math.random() * lettersS.length))
-      codeStreamContentS += charS + '<br>'
+    const charS = lettersS.charAt(Math.floor(Math.random() * lettersS.length))
+    codeStreamContentS += charS + '<br>'
   }
   codeStreamS.innerHTML = codeStreamContentS
 

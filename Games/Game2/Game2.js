@@ -124,6 +124,7 @@ function mazeKeydown2(event2) {
             nextBtn2.textContent = "Buttons"
             nextBtn2.style.fontSize = "2rem"
             nextBtn2.onclick = function () {
+                localStorage.setItem("escapeLevel", 3)
                 showGame(3)
             }
             container2.appendChild(nextBtn2)

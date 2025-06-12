@@ -100,6 +100,7 @@ function clickSpecialButton3() {
     nextBtn3.textContent = "Loading"
     nextBtn3.style.fontSize = "2rem"
     nextBtn3.onclick = function () {
+      localStorage.setItem("escapeLevel", 4)
       showGame(4)
     }
     container3.appendChild(nextBtn3)

@@ -103,6 +103,7 @@ function initGame1() {
                     nextBtn1.textContent = "The Invisible"
                     nextBtn1.style.fontSize = "2rem"
                     nextBtn1.onclick = function () {
+                        localStorage.setItem("escapeLevel", 2)
                         showGame(2)
                     }
                     container1.appendChild(nextBtn1)
