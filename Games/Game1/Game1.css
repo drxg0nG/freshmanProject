@@ -13,7 +13,6 @@ p {
     color: rgb(0, 255, 0);
     font-size: 100px;
     text-align: center;
-    display: flex;
 }
 
 input[type="text"] {

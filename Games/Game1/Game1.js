@@ -60,7 +60,7 @@ function initGame1() {
 
     //4: Secret Code 1
     function getLetter1() { 
-    const letter1 = 'I'
+    const letter1 = 'A'
     return letter1
     }
 

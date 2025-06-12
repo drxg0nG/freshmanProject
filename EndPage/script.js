@@ -1,30 +1,24 @@
-let allowExit = false
+let allowExitE = false
 
 document.getElementById('check').addEventListener('click', function() {
-    const inputElem = document.getElementById('finalInput');
-    const input = inputElem.value.trim().toLowerCase();
-    const correctWord = "game" 
+    const inputElemE = document.getElementById('finalInput');
+    const inputE = inputElemE.value.trim().toLowerCase();
+    const correctWordE = "game" 
 
-    if (input === correctWord) {
-        allowExit = true
+    if (inputE === correctWordE) {
+        allowExitE = true
         exitFullscreen()
 
-        // Congratulations screen
-        const container = document.querySelector('.container');
-        const congrats = document.querySelector('.congrats');
-        congrats.style.display = 'block';
-        container.style.display = 'none';
+        // Congratulations
+        const containerE = document.querySelector('.container');
+        const congratsE = document.querySelector('.congrats');
+        congratsE.style.display = 'block';
+        containerE.style.display = 'none';
     } else {
-        inputElem.style.borderBottom = '5px solid red'
+        inputElemE.style.borderBottom = '5px solid red'
     }
 })
 
 document.getElementById('finalInput').addEventListener('input', function() {
     this.style.borderBottom = '' // Reset to default as user types
-})
-
-document.addEventListener('fullscreenchange', function () {
-    if (!document.fullscreenElement && !allowExit) {
-        window.close()
-    }
 })

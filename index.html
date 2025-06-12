@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="Games/Game2/Game2.css">
     <link rel="stylesheet" href="Games/Game3/Game3.css">
     <link rel="stylesheet" href="Games/Game4/Game4.css">
+    <link rel="stylesheet" href="EndPage/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
 
@@ -27,6 +29,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div id="startPage" style="display: flex;">
@@ -61,11 +64,29 @@
     </div>
 
     <div id="game3" style="display: none;">
-        
+
     </div>
 
     <div id="game4" style="display: none;">
         <div id="game"></div>
+    </div>
+
+    <div id="endPage" style="display: none;">
+        <div class="container">
+            <h1><input type="text" id="finalInput"></h1>
+            <p>Make a word by unscrabling the letters to escape.</p>
+            <div>
+                <button id="check">Check?</button>
+            </div>
+        </div>
+        <div class="congrats">
+            <div class="congrats-title">Congratulations!</div>
+            <div class="congrats-message">You escaped the browser.</div>
+            
+            <a href="index.html"><button>Start NewGame</button></a>
+
+            <div class="congrats-credit">Made by Kaavish and Angadveer</div>
+        </div>
     </div>
 
     <script src="StartPage/script.js"></script>
@@ -73,31 +94,45 @@
     <script src="Games/Game2/Game2.js"></script>
     <script src="Games/Game3/Game3.js"></script>
     <script src="Games/Game4/Game4.js"></script>
+    <script src="EndPage/script.js"></script>
     <script src="FullScreen/fullscreen.js"></script>
 
     <script>
         function showGame(gameNumber) {
-            document.getElementById('game1').style.display = 'none';
-            document.getElementById('game2').style.display = 'none';
-            document.getElementById('game3').style.display = 'none';
-            document.getElementById('game4').style.display = 'none';
-    
+            document.getElementById('startPage').style.display = 'none'
+            document.getElementById('game1').style.display = 'none'
+            document.getElementById('game2').style.display = 'none'
+            document.getElementById('game3').style.display = 'none'
+            document.getElementById('game4').style.display = 'none'
+            document.getElementById('endPage').style.display = 'none'
+
             if (gameNumber === 1) {
-                document.getElementById('game1').style.display = 'flex';
-                if (typeof initGame1 === 'function') initGame1()
+                document.getElementById('game1').style.display = 'flex'
+                if (typeof initGame1 === 'function') {
+                    initGame1()
+                }
             } else if (gameNumber === 2) {
-                document.getElementById('game2').style.display = 'flex';
-                if (typeof initGame2 === 'function') initGame2()
+                document.getElementById('game2').style.display = 'flex'
+                if (typeof initGame2 === 'function') {
+                    initGame2()
+                }
             } else if (gameNumber === 3) {
-                document.getElementById('game3').style.display = 'flex';
-                if (typeof initGame3 === 'function') initGame3()
+                document.getElementById('game3').style.display = 'flex'
+                if (typeof initGame3 === 'function') {
+                    initGame3()
+                }
             } else if (gameNumber === 4) {
-                document.getElementById('game4').style.display = 'flex';
-                if (typeof initGame4 === 'function') initGame4()
+                document.getElementById('game4').style.display = 'block'
+                if (typeof initGame4 === 'function') {
+                    initGame4()
+                }
+            } else if (gameNumber === 'end') {
+                document.getElementById('endPage').style.display = 'block'
             }
         }
         window.showGame = showGame
     </script>
-    
+
 </body>
+
 </html>
