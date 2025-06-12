@@ -22,3 +22,9 @@ document.getElementById('check').addEventListener('click', function() {
 document.getElementById('finalInput').addEventListener('input', function() {
     this.style.borderBottom = '' // Reset to default as user types
 })
+
+document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement && !allowExitE) {
+        window.close();
+    }
+});

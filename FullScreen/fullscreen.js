@@ -24,8 +24,8 @@ function exitFullscreen() {
 
 /* Listen for fullscreen change */
 document.addEventListener('fullscreenchange', function () {
-    if (!document.fullscreenElement) {
-        // Try to close the window if fullscreen is exited
-        window.close()
-    }
+    // if (!document.fullscreenElement) {
+    //     // Try to close the window if fullscreen is exited
+    //     window.close()
+    // }
 })
