@@ -108,7 +108,7 @@ function mazeKeydown2(event2) {
 
             // Letter "I"
             const letter2 = document.createElement('div')
-            letter2.textContent = "I"
+            letter2.textContent = "E"
             letter2.style.fontSize = "5rem"
             letter2.style.color = "black"
             letter2.style.background = "rgb(0,255,0)"

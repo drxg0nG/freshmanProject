@@ -1,8 +1,8 @@
 let allowExitE = false
 
 document.getElementById('check').addEventListener('click', function() {
-    const inputElemE = document.getElementById('finalInput');
-    const inputE = inputElemE.value.trim().toLowerCase();
+    const inputElemE = document.getElementById('finalInput')
+    const inputE = inputElemE.value.trim().toLowerCase()
     const correctWordE = "game" 
 
     if (inputE === correctWordE) {
@@ -10,10 +10,10 @@ document.getElementById('check').addEventListener('click', function() {
         exitFullscreen()
 
         // Congratulations
-        const containerE = document.querySelector('.container');
-        const congratsE = document.querySelector('.congrats');
-        congratsE.style.display = 'block';
-        containerE.style.display = 'none';
+        const containerE = document.querySelector('.endPageContainer')
+        const congratsE = document.querySelector('.congrats')
+        congratsE.style.display = 'block'
+        containerE.style.display = 'none'
     } else {
         inputElemE.style.borderBottom = '5px solid red'
     }
@@ -25,6 +25,6 @@ document.getElementById('finalInput').addEventListener('input', function() {
 
 document.addEventListener('fullscreenchange', function () {
     if (!document.fullscreenElement && !allowExitE) {
-        window.close();
+        window.close()
     }
-});
+})

@@ -190,6 +190,7 @@ function moveSnake4() {
       nextBtn4.textContent = "The Final Code"
       nextBtn4.style.fontSize = "2rem"
       nextBtn4.onclick = function() {
+        localStorage.setItem("escapeLevel", 1)
         showGame('end')
       }
       container4.appendChild(nextBtn4)
