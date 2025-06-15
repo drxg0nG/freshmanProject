@@ -156,3 +156,4 @@ function initGame1() {
     equation1()
     interval1 = setInterval(updateQuestionMark1, intervalLevels1[currentLevel1]) //Sets an interval (changes the question mark number) every amount of seconds based on what level the user is on. The current level decides how long the question mark stays before it changes (5s, 3s, 1.5s).
 }
+

@@ -163,3 +163,52 @@ function initGame2() {
     maze2.addEventListener("keydown", mazeKeydown2)
     maze2.focus()
 }
+
+// ======== Matrix Background ========
+const matrixDiv2 = document.getElementById('matrix2')
+const fallingCode2 = document.getElementById('fallingCode2')
+const growingCode2 = document.getElementById('growingCode2') 
+const letters2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
+
+// Append to matrix
+matrixDiv2.appendChild(fallingCode2)
+matrixDiv2.appendChild(growingCode2)
+
+// Create the code stream
+function createCodeStream2() {
+  const codeStream2 = document.createElement('div')
+  codeStream2.className = 'stream'
+  
+  // Where its going to fall from
+  codeStream2.style.left = `${Math.random() * 100}vw`
+  
+  // Duration for the animation
+  const duration2 = (4 + Math.random() * 4)
+  codeStream2.style.animationDuration = duration2 + 's'
+  fallingCode2.style.animationDuration = (duration2 / 0.9) + 's'
+  
+  // Random font size
+  const fontSize2 = 14 + Math.random() * 10
+  codeStream2.style.fontSize = fontSize2 + 'px'
+  
+  // Build code stream
+  let codeStreamContent2 = ''
+  const codeStreamLength2 = 12 + Math.floor(Math.random() * 15)
+  for (let iS = 0; iS < codeStreamLength2; iS++) {
+    const charS = letters2.charAt(Math.floor(Math.random() * letters2.length))
+    codeStreamContent2 += charS + '<br>'
+  }
+  codeStream2.innerHTML = codeStreamContent2
+
+  // Sorting System
+  if (Math.random() < 0.7) {
+    fallingCode2.appendChild(codeStream2)
+  } else {
+    growingCode2.appendChild(codeStream2)
+  }
+  
+  // Remove code stream once finished
+  setTimeout(() => codeStream2.parentElement.removeChild(codeStream2), duration2 * 1000)
+}
+
+setInterval(createCodeStream2, 200)

@@ -1,10 +1,10 @@
 #game2 {
-    background-color: black;
     font-family: 'Cutive Mono', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    z-index: 1;
 }
 
 #maze {
@@ -35,7 +35,7 @@
     position: absolute;
     top: 6px;
     left: 6px;
-    z-index: 2;
+    z-index: 12;
 }
 
 .trail {
@@ -45,7 +45,7 @@
     position: absolute;
     top: 6px;
     left: 6px;
-    z-index: 1;
+    z-index: 11;
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
 }
 
@@ -96,3 +96,46 @@
 #maze:focus {
     outline: none;
 }
+
+/* Matrix Background */
+#matrix2 {
+    background: linear-gradient(180deg, rgba(0, 255, 0, 0.1) , black);
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.stream {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    white-space: nowrap;
+    color: rgb(0, 255, 0);
+    opacity: 0.8;
+    user-select: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#growingCode2 .stream {
+    animation-name: grow;
+}
+
+@keyframes fall {
+    0% {top: -80vh; opacity: 0.8;}
+    20% {opacity: 0.8;}
+    100% {top: 120vh; opacity: 0;}
+}
+
+@keyframes grow {
+    0% {top: -80vh; opacity: 0.8;}
+    20% {transform: scale(1); opacity: 0.8;}
+    100% {top: 120vh; transform: scale(3); opacity: 0;}
+}
+
