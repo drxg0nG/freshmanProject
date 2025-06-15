@@ -28,12 +28,3 @@ document.addEventListener('fullscreenchange', function () {
         window.close()
     }
 })
-
-function restart() {
-    document.getElementById('startPage').style.display = 'flex'
-    document.getElementById('game1').style.display = 'none'
-    document.getElementById('game2').style.display = 'none'
-    document.getElementById('game3').style.display = 'none'
-    document.getElementById('game4').style.display = 'none'
-    document.getElementById('endPage').style.display = 'none'
-}

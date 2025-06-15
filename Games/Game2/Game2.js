@@ -70,6 +70,13 @@ function updateTrails2() {
     })
 }
 
+function flashRed2() {
+    game2.classList.add('flash-red')
+    setTimeout(() => {
+        game2.classList.remove('flash-red')
+    }, 300)
+}
+
 // Check if player can move to (x, y)
 function canMove2(x2, y2) {
     return x2 >= 0 && x2 < size2 && y2 >= 0 && y2 < size2 && layout2[y2][x2] === 0
@@ -135,6 +142,12 @@ function mazeKeydown2(event2) {
             game2.appendChild(container2)
             return
         }
+    }
+
+    if (canMove2(newX2, newY2)) {
+
+    } else {
+        flashRed2()
     }
 }
 

@@ -29,11 +29,13 @@ function continueGameS() {
 const overlayS = document.querySelector('.overlay')
 const containerS = document.querySelector('.container')
 const matrixDivS = document.getElementById('matrix')
+const errorCodeS = document.getElementById('errorCode')
 const fallingCodeS = document.getElementById('fallingCode')
 const growingCodeS = document.getElementById('growingCode') 
 const lettersS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
 
 // Append to matrix
+matrixDivS.appendChild(errorCodeS)
 matrixDivS.appendChild(fallingCodeS)
 matrixDivS.appendChild(growingCodeS)
 
@@ -49,6 +51,7 @@ function createCodeStreamS() {
   const durationS = (4 + Math.random() * 4)
   codeStreamS.style.animationDuration = durationS + 's'
   fallingCodeS.style.animationDuration = (durationS / 0.9) + 's'
+  errorCodeS.style.animationDuration = durationS+ 's'
   
   // Random font size
   const fontSizeS = 14 + Math.random() * 10
@@ -64,7 +67,9 @@ function createCodeStreamS() {
   codeStreamS.innerHTML = codeStreamContentS
 
   // Sorting System
-  if (Math.random() < 0.7) {
+  if (Math.random() < 0.02) {
+    errorCodeS.appendChild(codeStreamS)
+  } else if (Math.random() < 0.7) {
     fallingCodeS.appendChild(codeStreamS)
   } else {
     growingCodeS.appendChild(codeStreamS)

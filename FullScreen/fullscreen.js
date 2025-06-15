@@ -6,7 +6,7 @@ function startFullscreen() {
         fullScreen.requestFullscreen()
     } else if (fullScreen.webkitRequestFullscreen) { /* Safari */
         fullScreen.webkitRequestFullscreen()
-    } else if (fullScreen.msRequestFullscreen) { /* IE11 */
+    } else if (fullScreen.msRequestFullscreen) { /* IE11 (Internet Explorer 11) */
         fullScreen.msRequestFullscreen()
     }
 }
@@ -17,7 +17,7 @@ function exitFullscreen() {
         document.exitFullscreen()
     } else if (document.webkitExitFullscreen) { /* Safari */
         document.webkitExitFullscreen()
-    } else if (document.msExitFullscreen) { /* IE11 */
+    } else if (document.msExitFullscreen) { /* IE11 (Internet Explorer 11) */
         document.msExitFullscreen()
     }
 }
