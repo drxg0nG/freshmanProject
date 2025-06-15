@@ -9,9 +9,16 @@
 
 #maze {
     display: grid;
+    background-color: black;
+    padding: 2px;
+    margin: 2px;
     grid-template-columns: repeat(10, 40px);
     grid-template-rows: repeat(10, 40px);
+    border: 2px solid rgb(0, 255, 0, 0.8);
+    border-radius: 8px;
     gap: 2px;
+    overflow: hidden;
+    z-index: 2;
 }
 
 .cell {
@@ -82,12 +89,10 @@
 
 #game2 .btn:hover {
     background-color: black;
-    color: rgb(0,255,0);
+    color: rgb(0, 255, 0);
     box-shadow: 0 0 10px black;
 }
 
 #maze:focus {
     outline: none;
-    box-shadow: none;
-    border: none;
 }

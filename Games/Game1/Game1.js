@@ -74,7 +74,13 @@ function initGame1() {
                 e1.preventDefault()
                 const userInput1 = parseInt(input1.value) // The value of the number in the input box
                 if (userInput1 === getCorrectAnswer1()) { //If the users answer is equal to the actual answer
-                    correctCount1++ //correctCount is declared to be 0 at the top of the js file, getting updated to 1 next, and then so on.
+                    // Flashes input green
+                    input1.classList.add('input-flash-green')
+                    setTimeout(() => {
+                        input1.classList.remove('input-flash-green')
+                    }, 300)
+
+                    correctCount1++ // correctCount1 + 1
 
                     // After the third correct answer:
                     if (correctCount1 >= 3) { //If the user gets 3 answers correct

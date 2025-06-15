@@ -17,14 +17,14 @@ let specialButtonClickCount3 = 0
 // Start time limit for special button
 function startSpecialButtonTime3() {
   if (specialButtonTime3) {
-    clearInterval(specialButtonTime3);
+    clearInterval(specialButtonTime3)
   } else {
     // nothing to clear since no time set
   }
 
   specialButtonTime3 = setInterval(() => {
     if (specialButton3) {
-      moveButtonRandomly3(specialButton3);
+      moveButtonRandomly3(specialButton3)
     } else {
       // nothing to do
     }
@@ -109,7 +109,7 @@ function clickSpecialButton3() {
     return
   }
 
-  // Normal flash / level up
+  // flash / level up
   game3.classList.add('flash-green')
   setTimeout(() => {
     game3.classList.remove('flash-green')
