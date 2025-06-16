@@ -157,3 +157,51 @@ function initGame1() {
     interval1 = setInterval(updateQuestionMark1, intervalLevels1[currentLevel1]) //Sets an interval (changes the question mark number) every amount of seconds based on what level the user is on. The current level decides how long the question mark stays before it changes (5s, 3s, 1.5s).
 }
 
+// ======== Matrix Background ========
+const matrixDiv1 = document.getElementById('matrix1')
+const fallingCode1 = document.getElementById('fallingCode1')
+const growingCode1 = document.getElementById('growingCode1') 
+const letters1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
+
+// Append to matrix
+matrixDiv1.appendChild(fallingCode1)
+matrixDiv1.appendChild(growingCode1)
+
+// Create the code stream
+function createCodeStream1() {
+  const codeStream1 = document.createElement('div')
+  codeStream1.className = 'stream'
+  
+  // Where its going to fall from
+  codeStream1.style.left = `${Math.random() * 100}vw`
+  
+  // Duration for the animation
+  const duration1 = (4 + Math.random() * 4)
+  codeStream1.style.animationDuration = duration1 + 's'
+  fallingCode1.style.animationDuration = (duration1 / 0.9) + 's'
+  
+  // Random font size
+  const fontSize1 = 14 + Math.random() * 10
+  codeStream1.style.fontSize = fontSize1 + 'px'
+  
+  // Build code stream
+  let codeStreamContent1 = ''
+  const codeStreamLength1 = 12 + Math.floor(Math.random() * 15)
+  for (let iS = 0; iS < codeStreamLength1; iS++) {
+    const charS = letters1.charAt(Math.floor(Math.random() * letters1.length))
+    codeStreamContent1 += charS + '<br>'
+  }
+  codeStream1.innerHTML = codeStreamContent1
+
+  // Sorting System
+  if (Math.random() < 0.7) {
+    fallingCode1.appendChild(codeStream1)
+  } else {
+    growingCode1.appendChild(codeStream1)
+  }
+  
+  // Remove code stream once finished
+  setTimeout(() => codeStream1.parentElement.removeChild(codeStream1), duration1 * 1000)
+}
+
+setInterval(createCodeStream1, 200)

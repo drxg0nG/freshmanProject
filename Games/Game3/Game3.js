@@ -8,7 +8,7 @@ let specialButtonIndex3
 let specialButton3
 
 // Level speeds
-const levelSpeeds3 = [1100, 999, 850]
+const levelSpeeds3 = [1100, 999, 850] // time in ms
 let currentLevel3 = 0
 let specialButtonTime3
 
