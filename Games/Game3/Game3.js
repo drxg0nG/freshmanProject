@@ -1,4 +1,8 @@
-let game3
+let game3 = document.getElementById('game3')
+let buttonGame3 = document.getElementById('buttonGame3')
+
+// Append thingy
+game3.appendChild(buttonGame3)
 
 // Amount of Buttons
 const buttons3 = 100
@@ -28,7 +32,7 @@ function startSpecialButtonTime3() {
     } else {
       // nothing to do
     }
-  }, levelSpeeds3[currentLevel3]);
+  }, levelSpeeds3[currentLevel3])
 }
 
 // Create Buttons
@@ -43,7 +47,7 @@ function createButton3(e3) {
   } else {
     button3.src = 'Games/Game3/button.png'
   }
-  game3.appendChild(button3)
+  buttonGame3.appendChild(button3)
   moveButtonRandomly3(button3)
 
   // Make each button move when clicked
@@ -58,11 +62,13 @@ function createButton3(e3) {
 
 // Move button randomly
 function moveButtonRandomly3(button3) {
-  const maxX3 = window.innerWidth - button3.offsetWidth
-  const maxY3 = window.innerHeight - button3.offsetHeight
+  const buttonGameContainer3 = buttonGame3
 
-  const randomX3 = Math.random() * maxX3
-  const randomY3 = Math.random() * maxY3
+  const containerWidth = buttonGameContainer3.offsetWidth
+  const containerHeight = buttonGameContainer3.offsetHeight
+
+  const randomX3 = Math.random() * containerWidth
+  const randomY3 = Math.random() * containerHeight
 
   button3.style.left = `${randomX3}px`
   button3.style.top = `${randomY3}px`
@@ -110,9 +116,9 @@ function clickSpecialButton3() {
   }
 
   // flash / level up
-  game3.classList.add('flash-green')
+  buttonGame3.classList.add('flash-green')
   setTimeout(() => {
-    game3.classList.remove('flash-green')
+    buttonGame3.classList.remove('flash-green')
     if (currentLevel3 < levelSpeeds3.length - 1) {
       currentLevel3++
       startSpecialButtonTime3()
@@ -124,8 +130,8 @@ function clickSpecialButton3() {
 
 // Create all buttons
 function initGame3() {
-  game3 = document.querySelector("#game3")
-  game3.innerHTML = ""
+  buttonGame3 = document.querySelector("#buttonGame3")
+  buttonGame3.innerHTML = ""
   specialButtonClickCount3 = 0
   currentLevel3 = 0
 
@@ -143,3 +149,52 @@ function initGame3() {
   }
   startSpecialButtonTime3()
 }
+
+// ======== Matrix Background ========
+const matrixDiv3 = document.getElementById('matrix3')
+const fallingCode3 = document.getElementById('fallingCode3')
+const growingCode3 = document.getElementById('growingCode3') 
+const letters3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
+
+// Append to matrix
+matrixDiv3.appendChild(fallingCode3)
+matrixDiv3.appendChild(growingCode3)
+
+// Create the code stream
+function createCodeStream3() {
+  const codeStream3 = document.createElement('div')
+  codeStream3.className = 'stream'
+  
+  // Where its going to fall from
+  codeStream3.style.left = `${Math.random() * 100}vw`
+  
+  // Duration for the animation
+  const duration3 = (4 + Math.random() * 4)
+  codeStream3.style.animationDuration = duration3 + 's'
+  fallingCode3.style.animationDuration = (duration3 / 0.9) + 's'
+  
+  // Random font size
+  const fontSize3 = 14 + Math.random() * 10
+  codeStream3.style.fontSize = fontSize3 + 'px'
+  
+  // Build code stream
+  let codeStreamContent3 = ''
+  const codeStreamLength3 = 12 + Math.floor(Math.random() * 15)
+  for (let iS = 0; iS < codeStreamLength3; iS++) {
+    const charS = letters3.charAt(Math.floor(Math.random() * letters3.length))
+    codeStreamContent3 += charS + '<br>'
+  }
+  codeStream3.innerHTML = codeStreamContent3
+
+  // Sorting System
+  if (Math.random() < 0.7) {
+    fallingCode3.appendChild(codeStream3)
+  } else {
+    growingCode3.appendChild(codeStream3)
+  }
+  
+  // Remove code stream once finished
+  setTimeout(() => codeStream3.parentElement.removeChild(codeStream3), duration3 * 1000)
+}
+
+setInterval(createCodeStream3, 200)
