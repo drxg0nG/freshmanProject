@@ -1,12 +1,13 @@
-const game4 = document.querySelector('#game4 #game')
+const gameParent4 = document.querySelector('#game4')
+const game4 = document.querySelector('#game')
 // ======== Snake ========
 let snakeBoxSize4 = 20
 let cols4
 let rows4
 
 function updateGridSize4() {
-  cols4 = Math.floor(window.innerWidth / snakeBoxSize4)
-  rows4 = Math.floor(window.innerHeight / snakeBoxSize4)
+  cols4 = Math.floor(game4.offsetWidth / snakeBoxSize4)
+  rows4 = Math.floor(game4.offsetHeight / snakeBoxSize4)
 }
 
 window.addEventListener("resize", function() {
@@ -162,7 +163,7 @@ function moveSnake4() {
       clearInterval(intervalId4)
       moving4 = false
       // Clear Game
-      game4.innerHTML = ""
+      gameParent4.innerHTML = ""
 
       // create container
       const container4 = document.createElement("div")
@@ -195,9 +196,9 @@ function moveSnake4() {
       }
       container4.appendChild(nextBtn4)
 
-      game4.style.backgroundColor = "rgb(0,255,0)"
-      game4.innerHTML = ""
-      game4.appendChild(container4)
+      gameParent4.style.backgroundColor = "rgb(0,255,0)"
+      gameParent4.innerHTML = ""
+      gameParent4.appendChild(container4)
       return
     }
 
@@ -333,3 +334,53 @@ function drawExit4() {
 // generateObstacles4()
 // generateExit4()
 // drawSnake4()
+
+
+// ======== Matrix Background ========
+const matrixDiv4 = document.getElementById('matrix4')
+const fallingCode4 = document.getElementById('fallingCode4')
+const growingCode4 = document.getElementById('growingCode4')
+const letters4 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
+
+// Append to matrix
+matrixDiv4.appendChild(fallingCode4)
+matrixDiv4.appendChild(growingCode4)
+
+// Create the code stream
+function createCodeStream4() {
+  const codeStream4 = document.createElement('div')
+  codeStream4.className = 'stream'
+
+  // Where its going to fall from
+  codeStream4.style.left = `${Math.random() * 100}vw`
+
+  // Duration for the animation
+  const duration4 = (4 + Math.random() * 4)
+  codeStream4.style.animationDuration = duration4 + 's'
+  fallingCode4.style.animationDuration = (duration4 / 0.9) + 's'
+
+  // Random font size
+  const fontSize4 = 14 + Math.random() * 10
+  codeStream4.style.fontSize = fontSize4 + 'px'
+
+  // Build code stream
+  let codeStreamContent4 = ''
+  const codeStreamLength4 = 12 + Math.floor(Math.random() * 15)
+  for (let iS = 0; iS < codeStreamLength4; iS++) {
+    const charS = letters4.charAt(Math.floor(Math.random() * letters4.length))
+    codeStreamContent4 += charS + '<br>'
+  }
+  codeStream4.innerHTML = codeStreamContent4
+
+  // Sorting System
+  if (Math.random() < 0.7) {
+    fallingCode4.appendChild(codeStream4)
+  } else {
+    growingCode4.appendChild(codeStream4)
+  }
+
+  // Remove code stream once finished
+  setTimeout(() => codeStream4.parentElement.removeChild(codeStream4), duration4 * 1000)
+}
+
+setInterval(createCodeStream4, 200)

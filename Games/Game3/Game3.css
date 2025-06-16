@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
 #buttonGame3 {
@@ -17,6 +18,7 @@
   position: relative;
   border: 2px solid rgb(0, 255, 0, 0.8);
   border-radius: 8px;
+  z-index: 2;
 }
 
 .random-button {
@@ -68,7 +70,7 @@
     background: linear-gradient(180deg, rgba(0, 255, 0, 0.1) , black);
     position: fixed;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -91,6 +93,15 @@
 
 #growingCode3 .stream {
     animation-name: grow;
+}
+
+#fallingCode3, #growingCode3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 @keyframes fall {

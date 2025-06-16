@@ -86,6 +86,10 @@
     </div>
 
     <div id="game4" style="display: none;">
+        <div id="matrix4">
+            <div id="fallingCode4"></div>
+            <div id="growingCode4"></div>
+        </div>
         <div id="game"></div>
     </div>
 
@@ -138,7 +142,7 @@
                     initGame3()
                 }
             } else if (gameNumber === 4) {
-                document.getElementById('game4').style.display = 'block'
+                document.getElementById('game4').style.display = 'flex'
                 if (typeof initGame4 === 'function') {
                     initGame4()
                 }

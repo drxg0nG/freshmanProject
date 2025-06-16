@@ -48,7 +48,9 @@ function createButton3(e3) {
     button3.src = 'Games/Game3/button.png'
   }
   buttonGame3.appendChild(button3)
-  moveButtonRandomly3(button3)
+
+  // Wait for image to load before moving
+  button3.onload = () => moveButtonRandomly3(button3);
 
   // Make each button move when clicked
   button3.addEventListener("click", () => {
@@ -60,6 +62,8 @@ function createButton3(e3) {
   })
 }
 
+button3.onload = () => moveButtonRandomly3(button3)
+
 // Move button randomly
 function moveButtonRandomly3(button3) {
   const buttonGameContainer3 = buttonGame3
@@ -67,8 +71,15 @@ function moveButtonRandomly3(button3) {
   const containerWidth = buttonGameContainer3.offsetWidth
   const containerHeight = buttonGameContainer3.offsetHeight
 
-  const randomX3 = Math.random() * containerWidth
-  const randomY3 = Math.random() * containerHeight
+  const buttonWidth = button3.offsetWidth
+  const buttonHeight = button3.offsetHeight
+
+  // Make sure the button stays inside the box
+  const maxX = containerWidth - buttonWidth
+  const maxY = containerHeight - buttonHeight
+
+  const randomX3 = Math.random() * maxX
+  const randomY3 = Math.random() * maxY
 
   button3.style.left = `${randomX3}px`
   button3.style.top = `${randomY3}px`
@@ -82,7 +93,7 @@ function clickSpecialButton3() {
     game3.innerHTML = ""
     game3.style.backgroundColor = "black"
 
-    // Create a centered container
+    // Create a container in center
     const container3 = document.createElement("div")
     container3.style.display = "flex"
     container3.style.flexDirection = "column"
@@ -116,9 +127,9 @@ function clickSpecialButton3() {
   }
 
   // flash / level up
-  buttonGame3.classList.add('flash-green')
+  game3.classList.add('flash-green')
   setTimeout(() => {
-    buttonGame3.classList.remove('flash-green')
+    game3.classList.remove('flash-green')
     if (currentLevel3 < levelSpeeds3.length - 1) {
       currentLevel3++
       startSpecialButtonTime3()
@@ -153,7 +164,7 @@ function initGame3() {
 // ======== Matrix Background ========
 const matrixDiv3 = document.getElementById('matrix3')
 const fallingCode3 = document.getElementById('fallingCode3')
-const growingCode3 = document.getElementById('growingCode3') 
+const growingCode3 = document.getElementById('growingCode3')
 const letters3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]$@!#&*+-=<>?^_~|"
 
 // Append to matrix
@@ -164,25 +175,25 @@ matrixDiv3.appendChild(growingCode3)
 function createCodeStream3() {
   const codeStream3 = document.createElement('div')
   codeStream3.className = 'stream'
-  
+
   // Where its going to fall from
   codeStream3.style.left = `${Math.random() * 100}vw`
-  
+
   // Duration for the animation
   const duration3 = (4 + Math.random() * 4)
   codeStream3.style.animationDuration = duration3 + 's'
   fallingCode3.style.animationDuration = (duration3 / 0.9) + 's'
-  
+
   // Random font size
   const fontSize3 = 14 + Math.random() * 10
   codeStream3.style.fontSize = fontSize3 + 'px'
-  
+
   // Build code stream
   let codeStreamContent3 = ''
   const codeStreamLength3 = 12 + Math.floor(Math.random() * 15)
-  for (let iS = 0; iS < codeStreamLength3; iS++) {
-    const charS = letters3.charAt(Math.floor(Math.random() * letters3.length))
-    codeStreamContent3 += charS + '<br>'
+  for (let i3 = 0; i3 < codeStreamLength3; i3++) {
+    const char3 = letters3.charAt(Math.floor(Math.random() * letters3.length))
+    codeStreamContent3 += char3 + '<br>'
   }
   codeStream3.innerHTML = codeStreamContent3
 
@@ -192,7 +203,7 @@ function createCodeStream3() {
   } else {
     growingCode3.appendChild(codeStream3)
   }
-  
+
   // Remove code stream once finished
   setTimeout(() => codeStream3.parentElement.removeChild(codeStream3), duration3 * 1000)
 }
